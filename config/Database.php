@@ -9,7 +9,7 @@
 		public $connect;
 		function __construct()
 		{
-			$this->connect = mysqli_connect('localhost', 'root', 'iyasmzn7', 'latihan_PointOfSale2');
+			$this->connect = mysqli_connect('localhost', 'root', 'iyasmzn7', 'tugas_PointOfSale2');
 		}
 		public function user_data() 
 		{

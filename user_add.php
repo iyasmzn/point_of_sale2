@@ -48,7 +48,7 @@
                       <div class="col-md-12">
                         <div class="form-group">
                           <label class="bmd-label-floating">Password</label>
-                          <input type="email" class="form-control" name="password">
+                          <input type="password" class="form-control" name="password">
                         </div>
                       </div>
                     </div>
