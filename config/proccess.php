@@ -12,5 +12,13 @@ elseif ($action == "user_delete") {
 	$db->user_delete($_GET['id']);
 	header('location:../user.php');
 }
+elseif ($action == "category_add") {
+	$db->category_add($_POST['category']);
+	header('location:../category.php');
+}
+elseif ($action == "category_delete") {
+	$db->category_delete($_GET['id']);
+	header('location:../category.php');
+}
 
  ?>
