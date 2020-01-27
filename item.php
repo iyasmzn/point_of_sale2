@@ -55,7 +55,7 @@
 												<td><?= $data['price'] ?></td>
 												<td class="text-center"><?= ($data['status'])?"<p class='btn btn-sm btn-outline-success px-2' style='border: 0px;box-shadow: none;'><i class='material-icons'>done_all</i> active</p>":"<p class='btn btn-sm btn-outline-danger px-2' style='border: 0px;box-shadow: none;'><i class='material-icons'>clear</i> not active</p>" ?></td>
 												<td>
-													<a href="./config/proccess.php?id=<?= $data['id']; ?>&action=category_delete" class="btn btn-sm btn-danger pull-right">Delete</a>
+													<a href="./config/proccess.php?id=<?= $data['id']; ?>&action=item_delete" class="btn btn-sm btn-danger pull-right">Delete</a>
 													<a href="" class="btn btn-sm btn-warning pull-right">Edit</a>
 												</td>
 											</tbody>

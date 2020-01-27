@@ -36,7 +36,7 @@
 										<a href="user_add.php" class="btn btn-md px-2 btn-info "><i class="material-icons">person_add</i></a>
 										<table class="table">
 											<thead class=" text-info">
-												<th>No</th>
+												<th style="width: 20px">No</th>
 												<th>Name</th>
 												<th>Email</th>
 												<th>Age</th>
@@ -55,7 +55,7 @@
 												<td><?= $data['address'] ?></td>
 												<td>
 													<a href="./config/proccess.php?id=<?= $data['id']; ?>&action=user_delete" class="btn btn-sm btn-danger pull-right">Delete</a>
-													<a href="" class="btn btn-sm btn-warning pull-right">Edit</a>
+													<a href="./user_edit.php?id=<?= $data['id'] ?>" class="btn btn-sm btn-warning pull-right">Edit</a>
 												</td>
 											</tbody>
 												<?php 

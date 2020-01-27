@@ -23,6 +23,15 @@
 		{
 			mysqli_query($this->connect, "INSERT INTO users (name, age, email, password, address) VALUES ('$name', '$age','$email','$password','$address')");
 		}
+		public function get_user_id($id_user)
+		{
+			$user_query = mysqli_query($this->connect, "SELECT * FROM users WHERE id='$id_user'");
+			return $user_query->fetch_array();
+		}
+		public function user_edit($name, $age, $email, $password, $address)
+		{
+			mysqli_query($this->connect, "UPDATE users SET name='$name', age='$age', email='$email', password='$password', address='$address'");
+		}
 		public function user_delete($id)
 		{
 			mysqli_query($this->connect, "DELETE FROM users WHERE id='$id'");
@@ -39,6 +48,15 @@
 		{
 			mysqli_query($this->connect, "INSERT INTO category ( category_name ) VALUES ('$category_name') ");
 		}
+		public function get_category_id($id_category)
+		{
+			$category_query = mysqli_query($this->connect, "SELECT * FROM category WHERE id='$id_category'");
+			return $category_query->fetch_array();
+		}
+		public function category_edit($id)
+		{
+			mysqli_query($this->connect, "UPDATE category SET category_name='$category_name'");
+		}
 		public function category_delete($id)
 		{
 			mysqli_query($this->connect, "DELETE FROM category WHERE id='$id'");
@@ -53,10 +71,9 @@
 		}
 		public function get_category_name($id)
 		{
-			$res = mysqli_query($this->connect, "SELECT category_name FROM category WHERE id = '$id'");
-			while ($row = mysqli_fetch_assoc($res)) {
-				$data = $row['category_name'];
-			}
+			$res = mysqli_query($this->connect, "SELECT * FROM category WHERE id = '$id'");
+			$row = mysqli_fetch_assoc($res);
+			$data = $row['category_name'];
 			return $data;
 			
 		}

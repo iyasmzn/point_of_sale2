@@ -8,12 +8,20 @@ if ($action == "user_add") {
 	$db->user_add($_POST['name'], $_POST['age'], $_POST['email'], $_POST['password'], $_POST['address']);
 	header('location:../user.php');
 }
+elseif ($action == "user_edit") {
+	$db->user_edit($_POST['name'], $_POST['age'], $_POST['email'], $_POST['password'], $_POST['address']);
+	header('location:../user.php');
+}
 elseif ($action == "user_delete") {
 	$db->user_delete($_GET['id']);
 	header('location:../user.php');
 }
 elseif ($action == "category_add") {
 	$db->category_add($_POST['category']);
+	header('location:../category.php');
+}
+elseif ($action == "category_edit") {
+	$db->category_edit($_POST['category']);
 	header('location:../category.php');
 }
 elseif ($action == "category_delete") {
