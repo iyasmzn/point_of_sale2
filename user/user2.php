@@ -1,9 +1,9 @@
 <?php 
-  require './config/Database.php';
+  require '../config/Database.php';
   use PointOfSale2\Database;
 
   $db = new Database();
-  $data_categories = $db->category_data();
+  $data_users = $db->user_data();
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,16 +13,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>User | Point Os Sale</title>
     <!-- plugins:css -->
-    <?php include './tmp/link2.php'; ?>
+    <?php include '../tmp/link2.php'; ?>
   </head>
   <body>
     <div class="container-scroller">
       <!-- partial:partials/_navbar.html -->
-      <?php include './tmp/purpleAdmin/partials/_navbar.html'; ?>
+      <?php include '../tmp/purpleAdmin/partials/_navbar.html'; ?>
       <!-- partial -->
       <div class="container-fluid page-body-wrapper">
         <!-- partial:partials/_sidebar.html -->
-        <?php include './tmp/purpleAdmin/partials/_sidebar.html'; ?>
+        <?php include '../tmp/purpleAdmin/partials/_sidebar.html'; ?>
         <!-- partial -->
         <div class="main-panel">
           <div class="content-wrapper">
@@ -48,19 +48,25 @@
                     <table class="table table-hover">
                       <thead class=" text-info">
                         <th style="width: 20px">No</th>
-                        <th>Category</th>
-                        <th>Action</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Age</th>
+                        <th>Address</th>
+                        <th><span class="pull-right">Action</span></th>
                       </thead>
                         <?php 
                           $no = 1;
-                          foreach ($data_categories as $data) {
+                          foreach ($data_users as $data) {
                         ?>
                       <tbody>
                         <td><?= $no++ ?></td>
-                        <td><?= $data['category_name'] ?></td>
+                        <td><?= $data['name'] ?></td>
+                        <td><?= $data['email'] ?></td>
+                        <td><?= $data['age'] ?></td>
+                        <td><?= $data['address'] ?></td>
                         <td>
-                          <a href="./config/proccess.php?id=<?= $data['id']; ?>&action=category_delete" class="btn btn-xs btn-gradient-danger">Delete</a>
-                          <a href="./category_edit.php?id=<?= $data['id'] ?>" class="btn btn-xs btn-gradient-warning">Edit</a>
+                          <a href="../config/proccess.php?id=<?= $data['id']; ?>&action=user_delete" class="btn btn-xs btn-danger">Delete</a>
+                          <a href="./user_edit.php?id=<?= $data['id'] ?>" class="btn btn-xs btn-warning">Edit</a>
                         </td>
                       </tbody>
                         <?php 
@@ -74,7 +80,7 @@
           </div>
           <!-- content-wrapper ends -->
           <!-- partial:partials/_footer.html -->
-          <?php include './tmp/purpleAdmin/partials/_footer.html'; ?>
+          <?php include '../tmp/purpleAdmin/partials/_footer.html'; ?>
           <!-- partial -->
         </div>
         <!-- main-panel ends -->
@@ -83,7 +89,7 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
-   <?php include './tmp/script2.php'; ?>
+   <?php include '../tmp/script2.php'; ?>
     <!-- End custom js for this page -->
   </body>
 </html>
