@@ -45,7 +45,7 @@
                   <div class="card-body">
                     <h4 class="card-title">Categories Data Table</h4>
                     </p>
-                    <table class="table table-hover">
+                    <table class="table table-hover table-bordered">
                       <thead class=" text-info">
                         <th style="width: 20px">No</th>
                         <th>Category</th>

@@ -2,6 +2,7 @@
     <link rel="stylesheet" href="http://localhost/project/PointOfSale2/tmp/purpleAdmin/assets/vendors/css/vendor.bundle.base.css">
     <!-- endinject -->
     <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="http://localhost/project/PointOfSale2/assets/style.css">
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <!-- endinject -->

@@ -1,3 +1,18 @@
+<?php 
+  require './config/Database.php';
+  use PointOfSale2\Database;
+
+  $db = new Database();
+  $data_users = $db->user_data();
+  $data_category = $db->category_data();
+  $data_item = $db->item_data();
+  $user = mysqli_query($db->connect, "SELECT * FROM users");
+  $userRow = mysqli_num_rows($user);
+  $category = mysqli_query($db->connect, "SELECT * FROM category");
+  $categoryRow = mysqli_num_rows($category);
+  $item = mysqli_query($db->connect, "SELECT * FROM item");
+  $itemRow = mysqli_num_rows($item);
+ ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -39,7 +54,7 @@
                     <img src="./tmp/purpleAdmin/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
                     <h4 class="font-weight-normal mb-3">Users <i class="mdi mdi-account-multiple h1 float-right"></i>
                     </h4>
-                    <h2 class="mb-5">0</h2>
+                    <h2 class="mb-5"><?= $userRow ?></h2>
                     <h6 class="card-text">Total Users</h6>
                   </div>
                 </div>
@@ -50,7 +65,7 @@
                     <img src="./tmp/purpleAdmin/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
                     <h4 class="font-weight-normal mb-3">Category <i class="mdi mdi-bookmark-outline mdi-24px float-right"></i>
                     </h4>
-                    <h2 class="mb-5">0</h2>
+                    <h2 class="mb-5"><?= $categoryRow ?></h2>
                     <h6 class="card-text">Kind of Category</h6>
                   </div>
                 </div>
@@ -61,7 +76,7 @@
                     <img src="./tmp/purpleAdmin/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
                     <h4 class="font-weight-normal mb-3">Item <i class="mdi mdi-diamond mdi-24px float-right"></i>
                     </h4>
-                    <h2 class="mb-5">0</h2>
+                    <h2 class="mb-5"><?= $itemRow ?></h2>
                     <h6 class="card-text">Kind of Item</h6>
                   </div>
                 </div>

@@ -43,12 +43,19 @@
               <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Users Data Table</h4>
-                    </p>
-                    <table class="table table-hover">
+                    <div class="row">
+                      <div class="col-md-8">
+                        <h4 class="card-title">Users Data Table</h4>                    
+                      </div>
+                      <div class="col-md-4 text-right">
+                        <a href="user_add2.php" class="btn btn-md px-3 btn-gradient-info"><i class="mdi mdi-account-plus"></i></a>
+                      </div>
+                    </div>
+                    <table class="table table-striped table-hover">
                       <thead class=" text-info">
                         <th style="width: 20px">No</th>
                         <th>Name</th>
+                        <th>Gender</th>
                         <th>Email</th>
                         <th>Age</th>
                         <th>Address</th>
@@ -61,12 +68,13 @@
                       <tbody>
                         <td><?= $no++ ?></td>
                         <td><?= $data['name'] ?></td>
+                        <td><?= ($data['gender'])?"Man":"Woman" ?></td>
                         <td><?= $data['email'] ?></td>
                         <td><?= $data['age'] ?></td>
                         <td><?= $data['address'] ?></td>
                         <td>
-                          <a href="../config/proccess.php?id=<?= $data['id']; ?>&action=user_delete" class="btn btn-xs btn-danger">Delete</a>
-                          <a href="./user_edit.php?id=<?= $data['id'] ?>" class="btn btn-xs btn-warning">Edit</a>
+                          <a href="./user_edit.php?id=<?= $data['id'] ?>" class="btn btn-xs btn-warning"><i class="mdi mdi-settings"></i></a>
+                          <a href="../config/proccess.php?id=<?= $data['id']; ?>&action=user_delete" class="btn btn-xs btn-danger"><i class="mdi mdi-trash-can"></i></a>
                         </td>
                       </tbody>
                         <?php 
