@@ -59,7 +59,7 @@
                         <th>Email</th>
                         <th>Age</th>
                         <th>Address</th>
-                        <th><span class="pull-right">Action</span></th>
+                        <th class="text-center" style="width: 50px">Action</th>
                       </thead>
                         <?php 
                           $no = 1;

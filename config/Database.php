@@ -40,14 +40,9 @@
 		{
 			mysqli_query($this->connect, "INSERT INTO category ( category_name ) VALUES ('$category_name') ");
 		}
-		public function get_category_id($id_category)
+		public function category_edit($category_name,$id)
 		{
-			$category_query = mysqli_query($this->connect, "SELECT * FROM category WHERE id='$id_category'");
-			return $category_query->fetch_array();
-		}
-		public function category_edit($id)
-		{
-			mysqli_query($this->connect, "UPDATE category SET category_name='$category_name'");
+			mysqli_query($this->connect, "UPDATE category SET category_name='$category_name' WHERE id='$id'");
 		}
 		public function category_delete($id)
 		{

@@ -19,15 +19,15 @@ elseif ($action == "user_delete") {
 }
 elseif ($action == "category_add") {
 	$db->category_add($_POST['category']);
-	header('location:../category.php');
+	header('location:../category/category2.php');
 }
 elseif ($action == "category_edit") {
-	$db->category_edit($_POST['category']);
-	header('location:../category.php');
+	$db->category_edit($_POST['category'], $_POST['id']);
+	header('location:../category/category2.php');
 }
 elseif ($action == "category_delete") {
 	$db->category_delete($_GET['id']);
-	header('location:../category.php');
+	header('location:../category/category2.php');
 }
 
  ?>

@@ -43,13 +43,19 @@
               <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Categories Data Table</h4>
-                    </p>
+                    <div class="row mb-3">
+                      <div class="col-md-8">
+                        <h4 class="card-title">Categories Data Table</h4>                    
+                      </div>
+                      <div class="col-md-4 text-right">
+                        <a href="category_add2.php" class="btn btn-md px-3 btn-gradient-info"><i class="mdi mdi-database-plus"></i></a>
+                      </div>
+                    </div>
                     <table class="table table-hover table-bordered">
                       <thead class=" text-info">
                         <th style="width: 20px">No</th>
                         <th>Category</th>
-                        <th>Action</th>
+                        <th style="width: 50px" class="text-center">Action</th>
                       </thead>
                         <?php 
                           $no = 1;
@@ -59,8 +65,8 @@
                         <td><?= $no++ ?></td>
                         <td><?= $data['category_name'] ?></td>
                         <td>
-                          <a href="../config/proccess.php?id=<?= $data['id']; ?>&action=category_delete" class="btn btn-xs btn-danger">Delete</a>
-                          <a href="./category_edit.php?id=<?= $data['id'] ?>" class="btn btn-xs btn-warning">Edit</a>
+                          <a href="./category_edit2.php?id=<?= $data['id'] ?>" class="btn btn-xs btn-warning"><i class="mdi mdi-settings"></i></a>
+                          <a href="../config/proccess.php?id=<?= $data['id']; ?>&action=category_delete" class="btn btn-xs btn-danger"><i class="mdi mdi-trash-can"></i></a>
                         </td>
                       </tbody>
                         <?php 

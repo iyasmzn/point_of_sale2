@@ -4,7 +4,7 @@
 		<!-- Required meta tags -->
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<title>User | Point Os Sale</title>
+		<title>Add User | Point Os Sale</title>
 		<!-- plugins:css -->
 		<?php include '../tmp/link2.php'; ?>
 	</head>
