@@ -3,7 +3,7 @@
   use PointOfSale2\Database;
 
   $db = new Database();
-  $data_categories = $db->category_data();
+  $data_categories = $db->data_show('category');
  ?>
 <!DOCTYPE html>
 <html lang="en">

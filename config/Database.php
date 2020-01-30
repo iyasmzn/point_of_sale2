@@ -11,38 +11,30 @@
 		{
 			$this->connect = mysqli_connect('localhost', 'root', 'iyasmzn7', 'tugas_PointOfSale2');
 		}
-		public function user_data() 
+		public function data_show($table) 
 		{
-			$res = mysqli_query($this->connect, 'SELECT * FROM users');
+			$res = mysqli_query($this->connect, "SELECT * FROM ".$table);
 			while ($row = mysqli_fetch_array($res)) {
 				$data[] = $row;
 			}
 			return $data;
 		}
-		public function user_add($name, $age, $email, $password, $address)
+		public function get_data_from_id($table,$id)
 		{
-			mysqli_query($this->connect, "INSERT INTO users (name, age, email, password, address) VALUES ('$name', '$age','$email','$password','$address')");
+			$query = mysqli_query($this->connect, "SELECT * FROM ".$table." WHERE id='$id'");
+			return $query->fetch_array();
 		}
-		public function get_user_id($id_user)
+		public function user_add($name, $gender, $age, $email, $password, $address)
 		{
-			$user_query = mysqli_query($this->connect, "SELECT * FROM users WHERE id='$id_user'");
-			return $user_query->fetch_array();
+			mysqli_query($this->connect, "INSERT INTO users (name, gender, age, email, password, address) VALUES ('$name', '$gender', '$age','$email','$password','$address')");
 		}
-		public function user_edit($name, $age, $email, $password, $address)
+		public function user_edit($name, $gender, $age, $email, $password, $address, $id)
 		{
-			mysqli_query($this->connect, "UPDATE users SET name='$name', age='$age', email='$email', password='$password', address='$address'");
+			mysqli_query($this->connect, "UPDATE users SET name='$name', gender='$gender', age='$age', email='$email', password='$password', address='$address' WHERE id='$id'");
 		}
 		public function user_delete($id)
 		{
 			mysqli_query($this->connect, "DELETE FROM users WHERE id='$id'");
-		}
-		public function category_data() 
-		{
-			$res = mysqli_query($this->connect, 'SELECT * FROM category');
-			while ($row = mysqli_fetch_array($res)) {
-				$data[] = $row;
-			}
-			return $data;
 		}
 		public function category_add($category_name)
 		{
@@ -60,14 +52,6 @@
 		public function category_delete($id)
 		{
 			mysqli_query($this->connect, "DELETE FROM category WHERE id='$id'");
-		}
-		public function item_data() 
-		{
-			$res = mysqli_query($this->connect, "SELECT * FROM item");
-			while ($row = mysqli_fetch_array($res)) {
-				$data[] = $row;
-			}
-			return $data;
 		}
 		public function get_category_name($id)
 		{

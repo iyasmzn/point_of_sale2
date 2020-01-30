@@ -3,9 +3,6 @@
   use PointOfSale2\Database;
 
   $db = new Database();
-  $data_users = $db->user_data();
-  $data_category = $db->category_data();
-  $data_item = $db->item_data();
   $user = mysqli_query($db->connect, "SELECT * FROM users");
   $userRow = mysqli_num_rows($user);
   $category = mysqli_query($db->connect, "SELECT * FROM category");

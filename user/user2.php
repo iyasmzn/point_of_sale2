@@ -3,7 +3,7 @@
   use PointOfSale2\Database;
 
   $db = new Database();
-  $data_users = $db->user_data();
+  $data_users = $db->data_show('users');
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -51,7 +51,7 @@
                         <a href="user_add2.php" class="btn btn-md px-3 btn-gradient-info"><i class="mdi mdi-account-plus"></i></a>
                       </div>
                     </div>
-                    <table class="table table-striped table-hover">
+                    <table class="table table-hover">
                       <thead class=" text-info">
                         <th style="width: 20px">No</th>
                         <th>Name</th>
@@ -68,12 +68,15 @@
                       <tbody>
                         <td><?= $no++ ?></td>
                         <td><?= $data['name'] ?></td>
-                        <td><?= ($data['gender'])?"Man":"Woman" ?></td>
+                        <td><?= ($data['gender'])?"
+                          <span class='badge badge-gradient-success'><i class='mdi mdi-gender-male'></i> Man</span>":"
+                          <span class='badge badge-gradient-warning'><i class='mdi mdi-gender-female'></i> Woman</span>" ?>  
+                        </td>
                         <td><?= $data['email'] ?></td>
                         <td><?= $data['age'] ?></td>
                         <td><?= $data['address'] ?></td>
                         <td>
-                          <a href="./user_edit.php?id=<?= $data['id'] ?>" class="btn btn-xs btn-warning"><i class="mdi mdi-settings"></i></a>
+                          <a href="./user_edit2.php?id=<?= $data['id'] ?>" class="btn btn-xs btn-warning"><i class="mdi mdi-settings"></i></a>
                           <a href="../config/proccess.php?id=<?= $data['id']; ?>&action=user_delete" class="btn btn-xs btn-danger"><i class="mdi mdi-trash-can"></i></a>
                         </td>
                       </tbody>
