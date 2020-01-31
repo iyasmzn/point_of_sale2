@@ -32,10 +32,6 @@
 		{
 			mysqli_query($this->connect, "UPDATE users SET name='$name', gender='$gender', age='$age', email='$email', password='$password', address='$address' WHERE id='$id'");
 		}
-		public function user_delete($id)
-		{
-			mysqli_query($this->connect, "DELETE FROM users WHERE id='$id'");
-		}
 		public function category_add($category_name)
 		{
 			mysqli_query($this->connect, "INSERT INTO category ( category_name ) VALUES ('$category_name') ");
@@ -43,10 +39,6 @@
 		public function category_edit($category_name,$id)
 		{
 			mysqli_query($this->connect, "UPDATE category SET category_name='$category_name' WHERE id='$id'");
-		}
-		public function category_delete($id)
-		{
-			mysqli_query($this->connect, "DELETE FROM category WHERE id='$id'");
 		}
 		public function item_add($category_id, $item, $price, $stock, $status)
 		{

@@ -14,7 +14,7 @@ elseif ($action == "user_edit") {
 	header('location:../user/user2.php');
 }
 elseif ($action == "user_delete") {
-	$db->user_delete($_GET['id']);
+	$db->data_delete('users',$_GET['id']);
 	header('location:../user/user2.php');
 }
 elseif ($action == "category_add") {
@@ -26,7 +26,7 @@ elseif ($action == "category_edit") {
 	header('location:../category/category2.php');
 }
 elseif ($action == "category_delete") {
-	$db->category_delete($_GET['id']);
+	$db->data_delete('category',$_GET['id']);
 	header('location:../category/category2.php');
 }
 elseif ($action == "item_add") {
