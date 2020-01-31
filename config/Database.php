@@ -22,7 +22,7 @@
 		public function get_data_from_id($table,$id)
 		{
 			$query = mysqli_query($this->connect, "SELECT * FROM ".$table." WHERE id='$id'");
-			return $query->fetch_array();
+			return $query->fetch_assoc();
 		}
 		public function user_add($name, $gender, $age, $email, $password, $address)
 		{
@@ -48,13 +48,17 @@
 		{
 			mysqli_query($this->connect, "DELETE FROM category WHERE id='$id'");
 		}
-		public function get_category_name($id)
+		public function item_add($category_id, $item, $price, $stock, $status)
 		{
-			$res = mysqli_query($this->connect, "SELECT * FROM category WHERE id = '$id'");
-			$row = mysqli_fetch_assoc($res);
-			$data = $row['category_name'];
-			return $data;
-			
+			mysqli_query($this->connect, "INSERT INTO item ( category_id, item, price, stock, status ) VALUES ('$category_id', '$item', '$price', '$stock', '$status') ");
+		}
+		public function item_edit($category_id, $item, $price, $stock, $status, $id)
+		{
+			mysqli_query($this->connect, "UPDATE item SET category_id='$category_id', item='$item', price='$price', stock='$stock', status='$status' WHERE id='$id'");
+		}
+		public function data_delete($table, $id)
+		{
+			mysqli_query($this->connect, "DELETE FROM ".$table." WHERE id='$id'");
 		}
 	}
  ?>

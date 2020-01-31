@@ -11,7 +11,7 @@
 		<!-- Required meta tags -->
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<title>Add Category | Point Os Sale</title>
+		<title>Edit Category | Point Os Sale</title>
 		<!-- plugins:css -->
 		<?php include '../tmp/link2.php'; ?>
 	</head>
@@ -29,8 +29,8 @@
 						<div class="page-header">
 							<h3 class="page-title">
 								<span class="page-title-icon bg-gradient-success text-white mr-2">
-									<i class="mdi mdi-account"></i>
-								</span> Add New Category </h3>
+									<i class="mdi mdi-database-settings"></i>
+								</span> Edit Category </h3>
 							<nav aria-label="breadcrumb">
 								<ul class="breadcrumb">
 									<li class="breadcrumb-item active" aria-current="page">
@@ -43,7 +43,7 @@
 							<div class="col-lg-12 grid-margin stretch-card">
 								<div class="card">
 									<div class="card-body">
-										<h4 class="card-title">Add Category</h4>
+										<h4 class="card-title">Edit Category</h4>
 										<form class="form-sample" method="POST" action="../config/proccess.php?action=category_edit">
 											<input type="hidden" name="id" value="<?= $id_cate ?>">
 											<p class="card-description"> </p>
@@ -64,7 +64,7 @@
 											</div>
 											<div class="row">
 												<div class="col-md-12 text-center">
-													<a href="./user2.php" class="btn btn-md btn-gradient-warning"><i class="mdi mdi-chevron-left"></i> back</a>
+													<a href="./category2.php" class="btn btn-md btn-gradient-warning"><i class="mdi mdi-chevron-left"></i> back</a>
 													<button type="submit" class="btn btn-md btn-gradient-success">Submit <i class="mdi mdi-chevron-right"></i></button>
 												</div>
 											</div>

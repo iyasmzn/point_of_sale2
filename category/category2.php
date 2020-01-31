@@ -11,7 +11,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>User | Point Os Sale</title>
+    <title>Category | Point Os Sale</title>
     <!-- plugins:css -->
     <?php include '../tmp/link2.php'; ?>
   </head>
@@ -29,7 +29,7 @@
             <div class="page-header">
               <h3 class="page-title">
                 <span class="page-title-icon bg-gradient-success text-white mr-2">
-                  <i class="mdi mdi-box"></i>
+                  <i class="mdi mdi-database"></i>
                 </span> Category </h3>
               <nav aria-label="breadcrumb">
                 <ul class="breadcrumb">

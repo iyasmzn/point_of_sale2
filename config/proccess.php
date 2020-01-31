@@ -29,5 +29,17 @@ elseif ($action == "category_delete") {
 	$db->category_delete($_GET['id']);
 	header('location:../category/category2.php');
 }
+elseif ($action == "item_add") {
+	$db->item_add($_POST['category'], $_POST['item'], $_POST['price'], $_POST['stock'], $_POST['status']);
+	header('location:../item/item2.php');
+}
+elseif ($action == "item_edit") {
+	$db->item_edit($_POST['category'], $_POST['item'], $_POST['price'], $_POST['stock'], $_POST['status'], $_POST['id']);
+	header('location:../item/item2.php');
+}
+elseif ($action == 'item_delete') {
+	$db->data_delete('item', $_GET['id']);
+	header('location:../item/item2.php');
+}
 
  ?>

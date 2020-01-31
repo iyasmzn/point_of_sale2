@@ -22,7 +22,7 @@
 						<div class="page-header">
 							<h3 class="page-title">
 								<span class="page-title-icon bg-gradient-success text-white mr-2">
-									<i class="mdi mdi-account"></i>
+									<i class="mdi mdi-database-plus"></i>
 								</span> Add New Category </h3>
 							<nav aria-label="breadcrumb">
 								<ul class="breadcrumb">
@@ -56,7 +56,7 @@
 											</div>
 											<div class="row">
 												<div class="col-md-12 text-center">
-													<a href="./user2.php" class="btn btn-md btn-gradient-warning"><i class="mdi mdi-chevron-left"></i> back</a>
+													<a href="./category2.php" class="btn btn-md btn-gradient-warning"><i class="mdi mdi-chevron-left"></i> back</a>
 													<button type="submit" class="btn btn-md btn-gradient-success">Submit <i class="mdi mdi-chevron-right"></i></button>
 												</div>
 											</div>
