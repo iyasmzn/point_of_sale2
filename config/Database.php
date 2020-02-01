@@ -24,6 +24,10 @@
 			$query = mysqli_query($this->connect, "SELECT * FROM ".$table." WHERE id='$id'");
 			return $query->fetch_assoc();
 		}
+		public function data_delete($table, $id)
+		{
+			mysqli_query($this->connect, "DELETE FROM ".$table." WHERE id='$id'");
+		}
 		public function user_add($name, $gender, $age, $email, $password, $address)
 		{
 			mysqli_query($this->connect, "INSERT INTO users (name, gender, age, email, password, address) VALUES ('$name', '$gender', '$age','$email','$password','$address')");
@@ -47,10 +51,6 @@
 		public function item_edit($category_id, $item, $price, $stock, $status, $id)
 		{
 			mysqli_query($this->connect, "UPDATE item SET category_id='$category_id', item='$item', price='$price', stock='$stock', status='$status' WHERE id='$id'");
-		}
-		public function data_delete($table, $id)
-		{
-			mysqli_query($this->connect, "DELETE FROM ".$table." WHERE id='$id'");
 		}
 	}
  ?>

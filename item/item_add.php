@@ -108,7 +108,7 @@
 											</div>
 											<div class="row">
 												<div class="col-md-12 text-center">
-													<a href="./item2.php" class="btn btn-md btn-gradient-warning"><i class="mdi mdi-chevron-left"></i> back</a>
+													<a href="./item.php" class="btn btn-md btn-gradient-warning"><i class="mdi mdi-chevron-left"></i> back</a>
 													<button type="submit" class="btn btn-md btn-gradient-success">Submit <i class="mdi mdi-chevron-right"></i></button>
 												</div>
 											</div>
