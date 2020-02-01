@@ -1,5 +1,5 @@
 <?php 
-	require '../config/Database.php';
+	require '/var/www/html/project/PointOfSale2/config/Database.php';
 	use PointOfSale2\Database;
 
 	$db = new Database();
@@ -13,16 +13,16 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<title>Item | Point Os Sale</title>
 		<!-- plugins:css -->
-		<?php include '../tmp/link2.php'; ?>
+		<?php include '/var/www/html/project/PointOfSale2/tmp/link.php'; ?>
 	</head>
 	<body>
 		<div class="container-scroller">
 			<!-- partial:partials/_navbar.html -->
-			<?php include '../tmp/purpleAdmin/partials/_navbar.html'; ?>
+			<?php include '/var/www/html/project/PointOfSale2/tmp/purpleAdmin/partials/_navbar.html'; ?>
 			<!-- partial -->
 			<div class="container-fluid page-body-wrapper">
 				<!-- partial:partials/_sidebar.html -->
-				<?php include '../tmp/purpleAdmin/partials/_sidebar.html'; ?>
+				<?php include '/var/www/html/project/PointOfSale2/tmp/purpleAdmin/partials/_sidebar.html'; ?>
 				<!-- partial -->
 				<div class="main-panel">
 					<div class="content-wrapper">
@@ -57,7 +57,7 @@
 					</div>
 					<!-- content-wrapper ends -->
 					<!-- partial:partials/_footer.html -->
-					<?php include '../tmp/purpleAdmin/partials/_footer.html'; ?>
+					<?php include '/var/www/html/project/PointOfSale2/tmp/purpleAdmin/partials/_footer.html'; ?>
 					<!-- partial -->
 				</div>
 				<!-- main-panel ends -->
@@ -66,7 +66,7 @@
 		</div>
 		<!-- container-scroller -->
 		<!-- plugins:js -->
-	 <?php include '../tmp/script2.php'; ?>
+	 <?php include '/var/www/html/project/PointOfSale2/tmp/script.php'; ?>
 		<!-- End custom js for this page -->
 	</body>
 </html>
