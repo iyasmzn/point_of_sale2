@@ -4,9 +4,9 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Purple Admin</title>
+    <title>Point of Sale 2</title>
     <!-- plugins:css -->
-		<?php include '/var/www/html/project/PointOfSale2/tmp/link2.php'; ?>
+		<?php include '/var/www/html/project/PointOfSale2/tmp/link.php'; ?>
   </head>
   <body>
     <div class="container-scroller">
@@ -20,9 +20,9 @@
                 </div>
                 <h4>Hello! let's get started</h4>
                 <h6 class="font-weight-light">Sign in to continue.</h6>
-                <form class="pt-3">
+                <form class="pt-3" action="./config/proccess.php?action=login_proccess" method="post">
                   <div class="form-group">
-                    <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Username">
+                    <input type="email" class="form-control form-control-lg" id="email" placeholder="Input your email">
                   </div>
                   <div class="form-group">
                     <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password">
@@ -54,7 +54,7 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
-	 <?php include '/var/www/html/project/PointOfSale2/tmp/script2.php'; ?>
+	 <?php include '/var/www/html/project/PointOfSale2/tmp/script.php'; ?>
     <!-- endinject -->
   </body>
 </html>
