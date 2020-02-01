@@ -18,7 +18,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<title>Point Os Sale | Iyasmzn</title>
 		<!-- plugins:css -->
-		<?php include '/var/www/html/project/PointOfSale2/tmp/link2.php'; ?>
+		<?php include '/var/www/html/project/PointOfSale2/tmp/link.php'; ?>
 	</head>
 	<body>
 		<div class="container-scroller">
@@ -102,7 +102,7 @@
 		</div>
 		<!-- container-scroller -->
 		<!-- plugins:js -->
-	 <?php include '/var/www/html/project/PointOfSale2/tmp/script2.php'; ?>
+	 <?php include '/var/www/html/project/PointOfSale2/tmp/script.php'; ?>
 		<!-- End custom js for this page -->
 	</body>
 </html>

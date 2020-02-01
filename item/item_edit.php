@@ -14,7 +14,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<title>Edit Item | Point Os Sale</title>
 		<!-- plugins:css -->
-		<?php include '../tmp/link2.php'; ?>
+		<?php include '../tmp/link.php'; ?>
 	</head>
 	<body>
 		<div class="container-scroller">
@@ -115,7 +115,7 @@
 											</div>
 											<div class="row">
 												<div class="col-md-12 text-center">
-													<a href="./item2.php" class="btn btn-md btn-gradient-warning"><i class="mdi mdi-chevron-left"></i> back</a>
+													<a href="./item.php" class="btn btn-md btn-gradient-warning"><i class="mdi mdi-chevron-left"></i> back</a>
 													<button type="submit" class="btn btn-md btn-gradient-success">Submit <i class="mdi mdi-chevron-right"></i></button>
 												</div>
 											</div>
@@ -136,7 +136,7 @@
 		</div>
 		<!-- container-scroller -->
 		<!-- plugins:js -->
-	 <?php include '../tmp/script2.php'; ?>
+	 <?php include '../tmp/script.php'; ?>
 		<!-- End custom js for this page -->
 	</body>
 </html>

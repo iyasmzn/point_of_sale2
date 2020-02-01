@@ -13,7 +13,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<title>Add Item | Point Os Sale</title>
 		<!-- plugins:css -->
-		<?php include '../tmp/link2.php'; ?>
+		<?php include '../tmp/link.php'; ?>
 	</head>
 	<body>
 		<div class="container-scroller">
@@ -129,7 +129,7 @@
 		</div>
 		<!-- container-scroller -->
 		<!-- plugins:js -->
-	 <?php include '../tmp/script2.php'; ?>
+	 <?php include '../tmp/script.php'; ?>
 		<!-- End custom js for this page -->
 	</body>
 </html>
