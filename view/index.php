@@ -1,7 +1,8 @@
 <?php 
+	session_start();
 	require '/var/www/html/project/PointOfSale2/config/Database.php';
 	use PointOfSale2\Database;
-
+	if (isset($_SESSION['name'])) {
 	$db = new Database();
 	$user = mysqli_query($db->connect, "SELECT * FROM users");
 	$userRow = mysqli_num_rows($user);
@@ -74,7 +75,7 @@
 										<h4 class="font-weight-normal mb-3">Item <i class="mdi mdi-diamond mdi-24px float-right"></i>
 										</h4>
 										<h2 class="mb-5"><?= $itemRow ?></h2>
-										<h6 class="card-text">Kind of Item</h6>
+										<h6 class="card-text">Items</h6>
 									</div>
 								</div>
 							</div>
@@ -85,7 +86,7 @@
 										<h4 class="font-weight-normal mb-3">Order <i class="mdi mdi-diamond mdi-24px float-right"></i>
 										</h4>
 										<h2 class="mb-5">0</h2>
-										<h6 class="card-text">Orderer</h6>
+										<h6 class="card-text">Orders</h6>
 									</div>
 								</div>
 							</div>
@@ -105,4 +106,11 @@
 	 <?php include '/var/www/html/project/PointOfSale2/tmp/script.php'; ?>
 		<!-- End custom js for this page -->
 	</body>
+	<?php 
+	}
+	else {
+		echo "please login first";
+		header('Refresh:2;../index.php');
+	}
+		 ?>
 </html>

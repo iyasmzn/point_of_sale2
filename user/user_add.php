@@ -1,3 +1,7 @@
+<?php 
+	session_start();
+	if (isset($_SESSION['name'])) {
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -141,4 +145,11 @@
 	 <?php include '../tmp/script.php'; ?>
 		<!-- End custom js for this page -->
 	</body>
+	<?php 
+	}
+	else {
+		echo "please login first";
+		header('Refresh:2;../index.php');
+	}
+		 ?>
 </html>

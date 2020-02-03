@@ -1,3 +1,11 @@
+<?php 
+  session_start();
+  require '/var/www/html/project/PointOfSale2/config/Database.php';
+  use PointOfSale2\Database;
+  $db           = new Database();
+  $orders_data  = $db->data_show('orders');
+  if (isset($_SESSION['name'])) {
+ ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -22,7 +30,7 @@
             <div class="page-header">
               <h3 class="page-title">
                 <span class="page-title-icon bg-gradient-success text-white mr-2">
-                  <i class="mdi mdi-account"></i>
+                  <i class="mdi mdi-cart"></i>
                 </span> Order </h3>
               <nav aria-label="breadcrumb">
                 <ul class="breadcrumb">
@@ -36,8 +44,43 @@
               <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Orders Data Table</h4>
-                    </p>
+                    <div class="row mb-3">
+                      <div class="col-md-8">
+                        <h4 class="card-title">Orders Data Table</h4>                    
+                      </div>
+                      <div class="col-md-4 text-right">
+                        <a href="order_add.php" class="btn btn-md px-3 btn-gradient-info"><i class="mdi mdi-cart-plus"></i></a>
+                      </div>
+                    </div>
+                    <table class="table table-hover table-bordered">
+                      <thead class=" text-info">
+                        <th style="width: 20px">No</th>
+                        <th>Table</th>
+                        <th>Item</th>
+                        <th>Qty</th>
+                        <th>Total</th>
+                        <th class="text-center" style="width: 50px">Action</th>
+                      </thead>
+                        <?php 
+                          $no = 1;
+                          foreach ($orders_data as $data) {
+                            $item = $db->get_data_from_id('item',$data['item_id']);
+                        ?>
+                      <tbody>
+                        <td><?= $no++ ?></td>
+                        <td><?= $data['table_place'] ?></td>
+                        <td><?= $item['item'] ?></td>
+                        <td><?= $data['qty'] ?></td>
+                        <td><?= $data['total'] ?></td>
+                        <td>
+                          <a href="./order_edit.php?id=<?= $data['id'] ?>" class="btn btn-xs btn-warning"><i class="mdi mdi-settings"></i></a>
+                          <a href="/project/PointOfSale2/config/proccess.php?id=<?= $data['id']; ?>&action=order_delete" class="btn btn-xs btn-danger"><i class="mdi mdi-trash-can"></i></a>
+                        </td>
+                      </tbody>
+                        <?php 
+                          }
+                         ?>
+                    </table>
                   </div>
                 </div>
               </div>
@@ -57,4 +100,11 @@
    <?php include '/var/www/html/project/PointOfSale2/tmp/script.php'; ?>
     <!-- End custom js for this page -->
   </body>
+  <?php 
+  }
+  else {
+    echo "please login first";
+    header('Refresh:2;../index.php');
+  }
+     ?>
 </html>

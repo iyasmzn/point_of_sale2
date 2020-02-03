@@ -1,7 +1,8 @@
-<?php 
+<?php  
+  session_start();
   require '../config/Database.php';
   use PointOfSale2\Database;
-
+  if (isset($_SESSION['name'])) {
   $db = new Database();
   $data_categories = $db->data_show('category');
  ?>
@@ -51,7 +52,7 @@
                         <a href="category_add.php" class="btn btn-md px-3 btn-gradient-info"><i class="mdi mdi-database-plus"></i></a>
                       </div>
                     </div>
-                    <table class="table table-hover table-bordered">
+                    <table class="table table-hover">
                       <thead class=" text-info">
                         <th style="width: 20px">No</th>
                         <th>Category</th>
@@ -92,4 +93,11 @@
    <?php include '../tmp/script.php'; ?>
     <!-- End custom js for this page -->
   </body>
+  <?php 
+  }
+  else {
+    echo "please login first";
+    header('Refresh:2;../index.php');
+  }
+     ?>
 </html>

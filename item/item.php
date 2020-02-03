@@ -1,7 +1,8 @@
 <?php 
+	session_start();
 	require '/var/www/html/project/PointOfSale2/config/Database.php';
 	use PointOfSale2\Database;
-
+	if (isset($_SESSION['name'])) {
 	$db = new Database();
 	$data_items = $db->data_show('item');
  ?>
@@ -51,7 +52,7 @@
                         <a href="item_add.php" class="btn btn-md px-3 btn-gradient-info"><i class="mdi mdi-plus"></i></a>
                       </div>
                     </div>
-										<table class="table table-hover">
+										<table class="table table-hover table-bordered">
 											<thead class=" text-info">
 												<th style="width: 20px">No</th>
 												<th>Item</th>
@@ -101,4 +102,11 @@
 	 <?php include '/var/www/html/project/PointOfSale2/tmp/script.php'; ?>
 		<!-- End custom js for this page -->
 	</body>
+	<?php 
+	}
+	else {
+		echo "please login first";
+		header('Refresh:2;../index.php');
+	}
+		 ?>
 </html>

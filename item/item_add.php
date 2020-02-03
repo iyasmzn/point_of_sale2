@@ -1,7 +1,8 @@
 <?php 
+	session_start();
   require '../config/Database.php';
   use PointOfSale2\Database;
-
+	if (isset($_SESSION['name'])) {
   $db = new Database();
   $category = $db->data_show('category');
  ?>
@@ -132,4 +133,11 @@
 	 <?php include '../tmp/script.php'; ?>
 		<!-- End custom js for this page -->
 	</body>
+	<?php 
+	}
+	else {
+		echo "please login first";
+		header('Refresh:2;../index.php');
+	}
+		 ?>
 </html>
