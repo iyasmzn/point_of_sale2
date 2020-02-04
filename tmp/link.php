@@ -10,3 +10,5 @@
     <link rel="stylesheet" href="/project/PointOfSale2/tmp/purpleAdmin/assets/css/style.css">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="/project/PointOfSale2/tmp/purpleAdmin/assets/images/favicon.png" />
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">

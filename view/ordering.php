@@ -4,7 +4,7 @@
 	use PointOfSale2\Database;
   if (isset($_SESSION['name'])) {
 	$db = new Database();
-	$data_items = $db->data_show('item');
+	$data_items = $db->data_id_item('item');
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +12,7 @@
 		<!-- Required meta tags -->
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<title>Item | Point Os Sale</title>
+		<title>Add to Cart | Point Os Sale</title>
 		<!-- plugins:css -->
 		<?php include '/var/www/html/project/PointOfSale2/tmp/link.php'; ?>
 	</head>
@@ -53,16 +53,26 @@
                     </div>
 										<div class="row">
                     <?php 
+                    function rupiah($rp) {
+											$res_rp = "Rp ".number_format($rp,2,',','.');
+											return $res_rp;
+										}
                     foreach ($data_items as $item) { 
 											$cate = $db->get_data_from_id('category',$item['category_id']);
                     	?>
                     	<div class="col-sm-4 my-2">
 	                    	<div class="bg-light mx-2 p-2 text-dark text-center">
-	                    		<p class="text-muted"><?= $cate['category_name'] ?></p>
-	                    		<h3><?= $item['item'] ?></h3>
-	                    		<p>Stock = <?= $item['stock'] ?> pcs</p>
-	                    		<input type="number" name="qty" value="1" class="qty p-2">
-	                    		<p class="pt-3">Price IDR.<span style="width: 100px" type="text" name="price" readonly class="price"><?= $item['price'] ?></span></p>
+	                    		<form method="post" action="../config/proccess.php?action=add_to_cart">
+	                    			<input type="hidden" name="user_id" value="<?= $_SESSION['id'] ?>">
+		                    		<p class="text-muted"><?= $cate['category_name'] ?></p>
+		                    		<!-- <h3 name="item_id"></h3> -->
+		                    		<select class="custom-select" disabled style="border: none;background: none;color: black;text-align: center;" name="item_id"><option value="<?= $item['id'] ?>"><?= $item['item'] ?></option></select>
+		                    		<p class="price"><?= rupiah($item['price']) ?>/pcs</p>
+		                    		<p>Stock = <?= $item['stock'] ?> pcs</p>
+		                    		<input type="number" name="qty" class="<?= $item['item'] ?> qty_item qty p-2" min="0" max="<?= $item['stock'] ?>" oninput="check(<?= $item['price'] ?>)">
+		                    		<!-- <p class="pt-3">Total IDR.<span style="" type="text" name="total_price" readonly class="total_price"></span></p> -->
+		                    		<br><button class="mt-3 btn btn-sm btn-outline-google" type="submit"><i class="mdi mdi-cart-plus"></i></button>
+	                    		</form>
 	                    	</div>
 	                    </div>
                    <?php } ?>
@@ -106,10 +116,19 @@
 	 <?php include '/var/www/html/project/PointOfSale2/tmp/script.php'; ?>
 		<!-- MyScript -->
 		<script type="text/javascript">
-			var qty = document.getElementByClassName('qty').value;
-			var price = document.getElementByClassName('price').value;
-
-
+			// function total() {
+			// 	// body...
+			// }
+			function check(x) {
+			$(document).ready(function() {
+				$('.qty_item').change(function() {
+					var qty = $('."<?=$item['item']?>"').val();
+					var prc = $('.price').val();
+					var total = qty*x ;
+					$('.total_price').html(total);
+				});
+			});
+			}
 		</script>
 		<!-- End custom js for this page -->
 	</body>

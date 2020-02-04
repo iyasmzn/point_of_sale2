@@ -1,11 +1,11 @@
-<?php 
+<?php
 	session_start();
-  require '../config/Database.php';
-  use PointOfSale2\Database;
+	require '../config/Database.php';
+	use PointOfSale2\Database;
 	if (isset($_SESSION['name'])) {
-  $db = new Database();
-  $tables = $db->data_show('tables');
-  $data_items = $db->data_id_item('item');
+	$id_table = $_GET['id'];
+	$db = new Database();
+	$data_tables = $db->get_data_from_id('tables',$id_table);
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +13,7 @@
 		<!-- Required meta tags -->
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<title>Add Item | Point Os Sale</title>
+		<title>Edit Table | Point Os Sale</title>
 		<!-- plugins:css -->
 		<?php include '../tmp/link.php'; ?>
 	</head>
@@ -31,8 +31,8 @@
 						<div class="page-header">
 							<h3 class="page-title">
 								<span class="page-title-icon bg-gradient-success text-white mr-2">
-									<i class="mdi mdi-codepen"></i>
-								</span> Add New Items </h3>
+									<i class="mdi mdi-database-settings"></i>
+								</span> Edit Table </h3>
 							<nav aria-label="breadcrumb">
 								<ul class="breadcrumb">
 									<li class="breadcrumb-item active" aria-current="page">
@@ -45,47 +45,28 @@
 							<div class="col-lg-12 grid-margin stretch-card">
 								<div class="card">
 									<div class="card-body">
-										<h4 class="card-title">Add Kind Of Items</h4>
-										<form class="form-sample" method="POST" action="../config/proccess.php?action=order_add">
+										<h4 class="card-title">Edit Table</h4>
+										<form class="form-sample" method="POST" action="../config/proccess.php?action=table_edit">
+											<input type="hidden" name="id" value="<?= $id_table ?>">
 											<p class="card-description"> </p>
-											<div class="form-group row my-0">
-												<div class="col-sm-12">
-													<div class="form-group">
-													  <label for="table">Table</label>
-		 											  <select class="form-control" id="table" name="table">
-		 											  	<?php foreach ($tables as $table) { ?>
-		 											    <option value="<?= $table['id'] ?>"><?= $table['tables'] ?></option>
-		 											  	<?php } ?>
-		 											  </select>
-													</div>
-												</div>
-											</div>
-											<div class="form-group row my-0">
-												<div class="col-sm-12">
-													<div class="form-group">
-													  <label for="item">Item</label>
-													  <select class="form-control" id="item" name="item">
-													  	<?php foreach ($data_items as $data) { ?>
-													    <option value="<?= $data['id'] ?>"><?= $data['item'] ?></option>
-													  	<?php } ?>
-													  </select>
-													</div>
-												</div>
-											</div>
-											<div class="form-group row mb-3">
-												<label class="col-sm-12 col-form-label">Qty</label>
-												<div class="col-sm-5">
-													<div class="input-group">
-														<div class="input-group-prepend">
-															<span class="input-group-text"><i class="mdi mdi-currency-usd"></i></span>
+											<div class="row">
+												<div class="col-md-12">
+													<div class="form-group row">
+														<label class="col-sm-12 col-form-label">Table</label>
+														<div class="col-sm-12">
+															<div class="input-group">
+																<div class="input-group-prepend">
+																	<span class="input-group-text"><i class="mdi mdi-database"></i></span>
+																</div>
+																<input type="text" class="form-control" placeholder="Table name" aria-label="Table name" aria-describedby="basic-addon1" name="table" value="<?= $data_tables['tables'] ?>">
+															</div>
 														</div>
-														<input type="number" class="form-control" placeholder="Qty" aria-label="Qty" aria-describedby="basic-addon1" name="qty" min="1" value="1">
 													</div>
 												</div>
 											</div>
 											<div class="row">
 												<div class="col-md-12 text-center">
-													<a href="./order.php" class="btn btn-md btn-gradient-warning"><i class="mdi mdi-chevron-left"></i> back</a>
+													<a href="./table.php" class="btn btn-md btn-gradient-warning"><i class="mdi mdi-chevron-left"></i> back</a>
 													<button type="submit" class="btn btn-md btn-gradient-success">Submit <i class="mdi mdi-chevron-right"></i></button>
 												</div>
 											</div>

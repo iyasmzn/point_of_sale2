@@ -61,10 +61,42 @@
 			mysqli_query($this->connect, "UPDATE item SET category_id='$category_id', item='$item', price='$price', stock='$stock', status='$status' WHERE id='$id'");
 		}
 
+// Table
+		public function table_add($table)
+		{
+			mysqli_query($this->connect, "INSERT INTO tables ( tables ) VALUES ('$table') ");
+		}
+		public function table_edit($table,$id)
+		{
+			mysqli_query($this->connect, "UPDATE tables SET tables='$table' WHERE id='$id'");
+		}
+
+// Cart
+		public function add_to_cart($user, $item, $qty)
+		{
+			mysqli_query($this->connect, "INSERT INTO order_cart ( user_id,	 item_id, qty ) VALUES ('$user','$item','$qty') ");
+		}
+		public function data_cart_show($table, $id) 
+		{
+			$res = mysqli_query($this->connect, "SELECT * FROM ".$table." WHERE user_id ='$id'");
+			while ($row = mysqli_fetch_array($res)) {
+				$data[] = $row;
+			}
+			return $data;
+		}
+
 // Order
 		public function order_add($table, $item, $qty, $tot)
 		{
 			mysqli_query($this->connect, "INSERT INTO orders (item_id, qty, table_place, total) VALUES ('$item', '$qty', '$table', '$tot')");
+		}
+		public function data_id_item($table) 
+		{
+			$res = mysqli_query($this->connect, "SELECT * FROM ".$table." WHERE stock > 0 AND status='1'");
+			while ($row = mysqli_fetch_array($res)) {
+				$data[] = $row;
+			}
+			return $data;
 		}
 
 // Login

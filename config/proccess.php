@@ -5,8 +5,43 @@ use PointOfSale2\Database;
 $db = new Database();
 $action = $_GET['action'];
 
+// LOGIN
+if ($action == 'login_proccess') {
+	session_start();
+	$name = $_POST['name'];
+	$password = $_POST['password'];
+	$login = $db->login_proccess($name, $password);
+	if (!empty($name && $password)) {
+		if (!empty($login)) {
+			$_SESSION['name'] = $login['name'];
+			$_SESSION['email'] = $login['email'];
+			$_SESSION['password'] = $login['password'];
+			$_SESSION['age'] = $login['age'];
+			$_SESSION['address'] = $login['address'];
+			$_SESSION['id'] = $login['id'];
+			header('location:../view/index.php');
+		}
+		else {
+			echo "Wrong";
+		    header('Refresh: 2;../index.php');
+		}
+	}
+	else {
+		echo "Empty";
+		    header('Refresh: 2;../index.php');
+	}
+}
+elseif ($action == 'signout') {
+	session_start();
+	unset($_SESSION['name']);
+	unset($_SESSION['password']);
+
+	echo 'You have been kicked';
+	header('refresh: 3; URL = ../');
+}
+
 // USER
-if ($action == "user_add") {
+elseif ($action == "user_add") {
 	$db->user_add($_POST['name'], $_POST['gender'], $_POST['age'], $_POST['email'], $_POST['password'], $_POST['address']);
 	header('location:../user/user.php');
 }
@@ -47,6 +82,26 @@ elseif ($action == 'item_delete') {
 	header('location:../item/item.php');
 }
 
+// TABLE
+elseif ($action == "table_add") {
+	$db->table_add($_POST['table']);
+	header('location:../table/table.php');
+}
+elseif ($action == "table_edit") {
+	$db->table_edit($_POST['table'], $_POST['id']);
+	header('location:../table/table.php');
+}
+elseif ($action == "table_delete") {
+	$db->data_delete('tables',$_GET['id']);
+	header('location:../table/table.php');
+}
+
+// Cart
+elseif ($action == "add_to_cart") {
+	$db->add_to_cart($_POST['user_id'], $_POST['item_id'], $_POST['qty']);
+	header('location:../view/ordering.php');
+}
+
 // ORDER
 elseif ($action == "order_add") {
 	$data_item = $db->get_data_from_id('item',$_POST['item']);
@@ -64,37 +119,4 @@ elseif ($action == 'order_delete') {
 	header('location:../order/order.php');
 }
 
-// LOGIN
-elseif ($action == 'login_proccess') {
-	session_start();
-	$name = $_POST['name'];
-	$password = $_POST['password'];
-	$login = $db->login_proccess($name, $password);
-	if (!empty($name && $password)) {
-		if (!empty($login)) {
-			$_SESSION['name'] = $login['name'];
-			$_SESSION['email'] = $login['email'];
-			$_SESSION['password'] = $login['password'];
-			$_SESSION['age'] = $login['age'];
-			$_SESSION['address'] = $login['address'];
-			header('location:../view/index.php');
-		}
-		else {
-			echo "Wrong";
-		    header('Refresh: 2;../index.php');
-		}
-	}
-	else {
-		echo "Empty";
-		    header('Refresh: 2;../index.php');
-	}
-}
-elseif ($action == 'signout') {
-	session_start();
-	unset($_SESSION['name']);
-	unset($_SESSION['password']);
-
-	echo 'You have been kicked';
-	header('refresh: 3; URL = ../');
-}
  ?>
