@@ -66,7 +66,7 @@
 	                    			<input type="hidden" name="user_id" value="<?= $_SESSION['id'] ?>">
 		                    		<p class="text-muted"><?= $cate['category_name'] ?></p>
 		                    		<!-- <h3 name="item_id"></h3> -->
-		                    		<select class="custom-select" disabled style="border: none;background: none;color: black;text-align: center;" name="item_id"><option value="<?= $item['id'] ?>"><?= $item['item'] ?></option></select>
+		                    		<select class="custom-select" style="border: none;background: none;color: black;text-align: center;" name="item_id"><option value="<?= $item['id'] ?>"><?= $item['item'] ?></option></select>
 		                    		<p class="price"><?= rupiah($item['price']) ?>/pcs</p>
 		                    		<p>Stock = <?= $item['stock'] ?> pcs</p>
 		                    		<input type="number" name="qty" class="<?= $item['item'] ?> qty_item qty p-2" min="0" max="<?= $item['stock'] ?>" oninput="check(<?= $item['price'] ?>)">

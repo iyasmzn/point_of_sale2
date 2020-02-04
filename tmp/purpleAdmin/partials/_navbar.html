@@ -46,12 +46,12 @@
           <i class="mdi mdi-cart-outline"></i>
           <span class="count-symbol bg-success"></span>
         </a>
-        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list text-center" aria-labelledby="messageDropdown">
+        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list text-center" aria-labelledby="messageDropdown" style="width: 200px">
           <h6 class="p-3 mb-0"><i class="mdi mdi-cart"></i> Cart</h6>
           <?php 
             $cart_data = $db->data_cart_show('order_cart', $_SESSION['id']);
             $no = 1;
-            if (!$cart_data) {
+            if (empty($cart_data)) {
               echo "nothing items";
             } else {
             foreach ($cart_data as $data) { 
@@ -59,8 +59,8 @@
               ?>
               <div class="dropdown-divider"></div>
               <p class="p-3 mb-0 text-center text-capitalize"><span><?= $no++."." ?></span> <?= $item['item'] ?> - qty:<span style="font-weight: lighter;"><?= $data['qty'] ?></span></p>
-              <button class="btn btn-sm btn-primary mb-2 text-center">Buy Now</button>
               <?php } } ?>
+              <button class="btn btn-sm btn-primary mb-2 text-center">Buy Now</button>
         </div>
       </li>
       <li class="nav-item dropdown">

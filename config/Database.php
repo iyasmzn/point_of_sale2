@@ -82,7 +82,11 @@
 			while ($row = mysqli_fetch_array($res)) {
 				$data[] = $row;
 			}
+			if (empty($data)) {
+				return "";
+			} else  {
 			return $data;
+			}
 		}
 
 // Order
