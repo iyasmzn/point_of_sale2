@@ -33,11 +33,25 @@ if ($action == 'login_proccess') {
 }
 elseif ($action == 'signout') {
 	session_start();
-	unset($_SESSION['name']);
-	unset($_SESSION['password']);
+	session_destroy();
 
 	echo 'You have been kicked';
-	header('refresh: 3; URL = ../');
+	header('location:/project/PointOfSale2/view/signout_view.php');
+}
+elseif ($action == "register") {
+	$db->user_add($_POST['name'], $_POST['gender'], $_POST['age'], $_POST['email'], $_POST['password'], $_POST['address']);
+	session_start();
+	$name = $_POST['name'];
+	$password = $_POST['password'];
+	$login = $db->login_proccess($name, $password);
+	$_SESSION['name'] = $login['name'];
+	$_SESSION['email'] = $login['email'];
+	$_SESSION['password'] = $login['password'];
+	$_SESSION['age'] = $login['age'];
+	$_SESSION['address'] = $login['address'];
+	$_SESSION['id'] = $login['id'];
+
+	header('location:../view/index.php');
 }
 
 // USER
