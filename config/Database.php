@@ -72,10 +72,6 @@
 		}
 
 // Cart
-		public function add_to_cart($user, $item, $qty)
-		{
-			mysqli_query($this->connect, "INSERT INTO order_cart ( user_id,	 item_id, qty ) VALUES ('$user','$item','$qty') ");
-		}
 		public function data_cart_show($table, $id) 
 		{
 			$res = mysqli_query($this->connect, "SELECT * FROM ".$table." WHERE user_id ='$id'");
@@ -87,6 +83,18 @@
 			} else  {
 			return $data;
 			}
+		}
+		public function add_to_cart($user, $item, $qty, $tot)
+		{
+			mysqli_query($this->connect, "INSERT INTO order_cart ( user_id,	 item_id, qty, total ) VALUES ('$user','$item','$qty','$tot') ");
+		}
+		public function update_item_cart($qty,$item, $id, $tot)
+		{
+			mysqli_query($this->connect, "UPDATE order_cart SET qty='$qty', total='$tot' WHERE user_id='$id' AND item_id='$item'");
+		}
+		public function update_item_qty($stock,$id)
+		{
+			mysqli_query($this->connect, "UPDATE item SET stock='$stock' WHERE id='$id'");
 		}
 
 // Order

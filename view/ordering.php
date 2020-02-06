@@ -28,7 +28,7 @@
 				<div class="main-panel">
 					<div class="content-wrapper">
 						<div class="page-header">
-							<h3 class="page-title">
+							<h3 class="page-title" data-aos="fade-down">
 								<span class="page-title-icon bg-gradient-success text-white mr-2">
 									<i class="mdi mdi-cart"></i>
 								</span> Cart </h3>
@@ -41,18 +41,19 @@
 							</nav>
 						</div>
 						<!-- CONTENT -->
-							<div class="col-lg-12 grid-margin stretch-card">
+							<div class="col-lg-12 grid-margin stretch-card" data-aos="zoom-in" data-aos-delay="100">
 								<div class="card">
 									<div class="card-body">
                     <div class="row mb-3">
                       <div class="col-md-8">
-                        <h4 class="card-title">Items</h4>                    
+                        <h4 class="card-title" data-aos="fade-down" data-aos-delay="400">Items</h4>                    
                       </div>
                       <div class="col-md-4 text-right">
                       </div>
                     </div>
 										<div class="row">
                     <?php 
+                    $delay = 500;
                     function rupiah($rp) {
 											$res_rp = "Rp ".number_format($rp,2,',','.');
 											return $res_rp;
@@ -60,7 +61,7 @@
                     foreach ($data_items as $item) { 
 											$cate = $db->get_data_from_id('category',$item['category_id']);
                     	?>
-                    	<div class="col-sm-4 my-2">
+                    	<div class="col-sm-4 my-2" data-aos="zoom-in" data-aos-delay="<?= $delay+=200 ?>">
 	                    	<div class="bg-light mx-2 p-2 text-dark text-center">
 	                    		<form method="post" action="../config/proccess.php?action=add_to_cart">
 	                    			<input type="hidden" name="user_id" value="<?= $_SESSION['id'] ?>">
@@ -91,11 +92,38 @@
                       </div>
                     </div>
                     <div class="row">
-                    	<table class="table table-striped">
-                    		<thead>
-                    			
-                    		</thead>
-                    	</table>
+				          <h6 class="p-3 mb-0"><i class="mdi mdi-cart"></i> Cart</h6>
+				          <table class="table table-striped">
+				            <tr>
+				              <th>No</th>
+				              <th>Item</th>
+				              <th>Qty</th>
+				              <th>Total</th>
+				              <th>Action</th>
+				            </tr>
+				          <?php 
+				            $cart_data = $db->data_cart_show('order_cart', $_SESSION['id']);
+				            $no = 1;
+				            if (empty($cart_data)) {
+				              echo "nothing items";
+				            } else {
+				            foreach ($cart_data as $data) { 
+				              $item = $db->get_data_from_id('item',$data['item_id']);
+				              ?>
+				              <tr>
+				                <td><?= $no++ ?></td>
+				                <td><?= $item['item'] ?></td>
+				                <td><?= $data['qty'] ?></td>
+				                <td><?= $data['total'] ?></td>
+				                <td>
+				                  <a href="" class="text-warning"><i class="mdi mdi-minus-circle"></i></a>
+				                  <a href="" class="text-info"><i class="mdi mdi-plus-circle"></i></a>
+				                  <a href="" class="text-danger"><i class="mdi mdi-close-circle"></i></a>
+				                </td>
+				              </tr>
+				              <?php } } ?>
+				              </table>
+				              <button class="btn btn-sm btn-primary mb-2 text-center">Buy Now</button>
                     </div>
 									</div>
 								</div>

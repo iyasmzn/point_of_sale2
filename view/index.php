@@ -33,7 +33,7 @@
 				<div class="main-panel">
 					<div class="content-wrapper">
 						<div class="page-header">
-							<h3 class="page-title">
+							<h3 class="page-title" data-aos="fade-down">
 								<span class="page-title-icon bg-gradient-primary text-white mr-2">
 									<i class="mdi mdi-home"></i>
 								</span> Home </h3>
@@ -46,7 +46,7 @@
 							</nav>
 						</div>
 						<div class="row">
-							<div class="col-md-3 stretch-card grid-margin">
+							<div class="col-md-3 stretch-card grid-margin" data-aos="zoom-in" data-aos-delay="200">
 								<div class="card bg-gradient-success card-img-holder text-white">
 									<div class="card-body">
 										<img src="/project/PointOfSale2/tmp/purpleAdmin/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
@@ -57,7 +57,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-md-3 stretch-card grid-margin">
+							<div class="col-md-3 stretch-card grid-margin" data-aos="zoom-in" data-aos-delay="300">
 								<div class="card bg-gradient-info card-img-holder text-white">
 									<div class="card-body">
 										<img src="/project/PointOfSale2/tmp/purpleAdmin/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
@@ -68,7 +68,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-md-3 stretch-card grid-margin">
+							<div class="col-md-3 stretch-card grid-margin" data-aos="zoom-in" data-aos-delay="400">
 								<div class="card bg-gradient-warning card-img-holder text-white">
 									<div class="card-body">
 										<img src="/project/PointOfSale2/tmp/purpleAdmin/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
@@ -79,7 +79,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-md-3 stretch-card grid-margin">
+							<div class="col-md-3 stretch-card grid-margin" data-aos="zoom-in" data-aos-delay="500">
 								<div class="card bg-gradient-danger card-img-holder text-white">
 									<div class="card-body">
 										<img src="/project/PointOfSale2/tmp/purpleAdmin/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />

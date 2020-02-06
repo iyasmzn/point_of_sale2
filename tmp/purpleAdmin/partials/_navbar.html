@@ -46,8 +46,14 @@
           <i class="mdi mdi-cart-outline"></i>
           <span class="count-symbol bg-success"></span>
         </a>
-        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list text-center" aria-labelledby="messageDropdown" style="width: 200px">
+        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list text-center" aria-labelledby="messageDropdown" style="width: auto">
           <h6 class="p-3 mb-0"><i class="mdi mdi-cart"></i> Cart</h6>
+          <table class="table table-striped">
+            <tr>
+              <th>No</th>
+              <th>Item</th>
+              <th>Qty</th>
+            </tr>
           <?php 
             $cart_data = $db->data_cart_show('order_cart', $_SESSION['id']);
             $no = 1;
@@ -57,10 +63,14 @@
             foreach ($cart_data as $data) { 
               $item = $db->get_data_from_id('item',$data['item_id']);
               ?>
-              <div class="dropdown-divider"></div>
-              <p class="p-3 mb-0 text-center text-capitalize"><span><?= $no++."." ?></span> <?= $item['item'] ?> - qty:<span style="font-weight: lighter;"><?= $data['qty'] ?></span></p>
+              <tr>
+                <td><?= $no++ ?></td>
+                <td><?= $item['item'] ?></td>
+                <td><?= $data['qty'] ?></td>
+              </tr>
               <?php } } ?>
-              <button class="btn btn-sm btn-primary mb-2 text-center">Buy Now</button>
+              </table>
+              <button class="btn btn-sm btn-primary mb-2 text-center">View Detail</button>
         </div>
       </li>
       <li class="nav-item dropdown">

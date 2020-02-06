@@ -22,20 +22,17 @@ if ($action == 'login_proccess') {
 			header('location:../view/index.php');
 		}
 		else {
-			echo "Wrong";
-		    header('Refresh: 2;../index.php');
+				header('location:/project/PointOfSale2/view/login_alert_view.php?action=wrong_password');
 		}
 	}
 	else {
-		echo "Empty";
-		    header('Refresh: 2;../index.php');
+				header('location:/project/PointOfSale2/view/login_alert_view.php?action=empty');
 	}
 }
 elseif ($action == 'signout') {
 	session_start();
 	session_destroy();
 
-	echo 'You have been kicked';
 	header('location:/project/PointOfSale2/view/signout_view.php');
 }
 elseif ($action == "register") {
@@ -112,8 +109,32 @@ elseif ($action == "table_delete") {
 
 // Cart
 elseif ($action == "add_to_cart") {
-	$db->add_to_cart($_POST['user_id'], $_POST['item_id'], $_POST['qty']);
-	header('location:../view/ordering.php');
+	$data = $db->data_cart_show('order_cart',$_POST['user_id']);
+	$data_item = $db->get_data_from_id('item',$_POST['item_id']);
+	$stock_new = $data_item['stock'] - $_POST['qty'];
+	foreach ($data as $daa) {	
+		var_dump($daa['qty']."<br>");
+			$qtyy = $daa['qty'] + $_POST['qty'];
+			$total1 = $data_item['price']*$qtyy;
+	}
+		if ($_POST['item_id'] == $daa['item_id']) {
+			$db->update_item_cart($qtyy, $_POST['item_id'],$_POST['user_id'], $total1);
+			$db->update_item_qty($stock_new, $_POST['item_id']);
+			header('location:../view/ordering.php');	
+		}
+		else {
+			$total2 = $data_item['price']*$_POST['qty'];
+			$db->add_to_cart($_POST['user_id'], $_POST['item_id'], $_POST['qty'], $total2);
+			$db->update_item_qty($stock_new, $_POST['item_id']);
+			header('location:../view/ordering.php');	
+		}
+	echo "qty++ = ".$qtyy;
+	echo "<br>";
+	echo "item = ".$data_item['item'];
+	echo "<br>";
+	echo "stock item = ".$data_item['stock'];
+	echo "<br>";
+	echo "stock item update = ".$stock_new;
 }
 
 // ORDER

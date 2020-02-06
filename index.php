@@ -13,7 +13,7 @@
       <div class="container-fluid page-body-wrapper full-page-wrapper">
         <div class="content-wrapper d-flex align-items-center auth">
           <div class="row flex-grow">
-            <div class="col-lg-4 mx-auto">
+            <div class="col-lg-4 mx-auto" data-aos="zoom-in">
               <div class="auth-form-light text-left p-5">
                 <div class="brand-logo">
                   <a class="brand-logo text-success" href="/project/PointOfSale2/view/index.php" style="font-size: 2em;"><i class="mdi mdi-basket"></i> <b>Point of Sale</b> 2</a>

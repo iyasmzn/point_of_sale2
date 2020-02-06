@@ -1,10 +1,12 @@
 <?php 
+	session_start();
   require '../config/Database.php';
   use PointOfSale2\Database;
-  $id = $_GET['id'];
+	if (isset($_SESSION['name'])) {
+  $item_id = $_GET['id'];
   $db = new Database();
   $category = $db->data_show('category');
-  $item = $db->get_data_from_id('item',$id);
+  $itemss = $db->get_data_from_id('item',$item_id);
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,7 +48,7 @@
 									<div class="card-body">
 										<h4 class="card-title">Edit Item</h4>
 										<form class="form-sample" method="POST" action="../config/proccess.php?action=item_edit">
-											<input type="hidden" name="id" value="<?= $id ?>">
+											<input type="hidden" name="id" value="<?= $item_id ?>">
 											<p class="card-description"> </p>
 											<div class="form-group row">
 												<label class="col-sm-12 col-form-label">Item</label>
@@ -55,7 +57,7 @@
 														<div class="input-group-prepend">
 															<span class="input-group-text"><i class="mdi mdi-codepen"></i></span>
 														</div>
-														<input type="text" class="form-control" placeholder="Item name" aria-label="Item name" aria-describedby="basic-addon1" name="item" value="<?= $item['item'] ?>">
+														<input type="text" class="form-control" placeholder="Item name" aria-label="Item name" aria-describedby="basic-addon1" name="item" value="<?= $itemss['item'] ?>">
 													</div>
 												</div>
 											</div>
@@ -65,7 +67,7 @@
 													  <label for="category">Category</label>
 													  <select class="form-control" id="category" name="category">
 													  	<?php foreach ($category as $cate) { 
-													  		if ($cate['id'] == $item['category_id']) { ?>				  			
+													  		if ($cate['id'] == $itemss['category_id']) { ?>				  			
 													    <option value="<?= $cate['id'] ?>" selected><?= $cate['category_name'] ?></option>
 													    <?php
 													  		} else { ?>
@@ -83,7 +85,7 @@
 														<div class="input-group-prepend">
 															<span class="input-group-text"><i class="mdi mdi-currency-usd"></i></span>
 														</div>
-														<input type="number" class="form-control" placeholder="Price" aria-label="Price" aria-describedby="basic-addon1" name="price" value="<?= $item['price'] ?>">
+														<input type="number" class="form-control" placeholder="Price" aria-label="Price" aria-describedby="basic-addon1" name="price" value="<?= $itemss['price'] ?>">
 													</div>
 												</div>
 											</div>
@@ -95,19 +97,19 @@
 														<div class="input-group-prepend">
 															<span class="input-group-text"><i class="mdi mdi-database"></i></span>
 														</div>
-														<input type="number" class="form-control" placeholder="Stock" aria-label="Stock" aria-describedby="basic-addon1" name="stock" value="<?= $item['stock'] ?>">
+														<input type="number" class="form-control" placeholder="Stock" aria-label="Stock" aria-describedby="basic-addon1" name="stock" value="<?= $itemss['stock'] ?>">
 													</div>
 												</div>
 												<div class="col-sm-4">
 													<div class="row">
 														<div class="col-sm-6 form-check form-check-success">
 														  <label class="form-check-label">
-														    <input type="radio" class="form-check-input" name="status" id="status" value="1" <?= ($item['status'])?"checked":"" ?>> ACTIVE 
+														    <input type="radio" class="form-check-input" name="status" id="status" value="1" <?= ($itemss['status'])?"checked":"" ?>> ACTIVE 
 														  </label>
 														</div>
 														<div class="col-sm-6 form-check form-check-danger">
 														  <label class="form-check-label">
-														    <input type="radio" class="form-check-input" name="status" id="status" value="0" <?= ($item['status'])?"":"checked" ?>> NOT ACTIVE 
+														    <input type="radio" class="form-check-input" name="status" id="status" value="0" <?= ($itemss['status'])?"":"checked" ?>> NOT ACTIVE 
 														  </label>
 														</div>	
 													</div>
@@ -139,4 +141,11 @@
 	 <?php include '../tmp/script.php'; ?>
 		<!-- End custom js for this page -->
 	</body>
+	<?php 
+	}
+	else {
+		echo "please login first";
+		header('Refresh:2;../index.php');
+	}
+		 ?>
 </html>
