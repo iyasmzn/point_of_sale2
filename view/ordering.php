@@ -5,6 +5,7 @@
   if (isset($_SESSION['name'])) {
 	$db = new Database();
 	$data_items = $db->data_id_item('item');
+  $tables = $db->data_show('tables');
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,6 +16,14 @@
 		<title>Add to Cart | Point Os Sale</title>
 		<!-- plugins:css -->
 		<?php include '/var/www/html/project/PointOfSale2/tmp/link.php'; ?>
+		<style type="text/css">
+			.item-card {
+				transition: all 0.3s;
+			}
+			.item-card:hover {
+				box-shadow: 0px 2px 4px gray;
+			}
+		</style>
 	</head>
 	<body>
 		<div class="container-scroller">
@@ -61,18 +70,18 @@
                     foreach ($data_items as $item) { 
 											$cate = $db->get_data_from_id('category',$item['category_id']);
                     	?>
-                    	<div class="col-sm-4 my-2" data-aos="zoom-in" data-aos-delay="<?= $delay+=200 ?>">
-	                    	<div class="bg-light mx-2 p-2 text-dark text-center">
-	                    		<form method="post" action="../config/proccess.php?action=add_to_cart">
+                    	<div class="col-sm-4 my-2" data-aos="zoom-in" data-aos-offset="0" data-aos-delay="<?= $delay+=200 ?>">
+	                    	<div class="item-card bg-light mx-2 p-2 text-dark text-center" style="border-radius: 20px;text-transform: capitalize;">
+	                    		<form method="post" action="../config/proccess.php?action=add_to_cart" style="border: 1px solid white;border-radius: 15px;">
 	                    			<input type="hidden" name="user_id" value="<?= $_SESSION['id'] ?>">
 		                    		<p class="text-muted"><?= $cate['category_name'] ?></p>
 		                    		<!-- <h3 name="item_id"></h3> -->
-		                    		<select class="custom-select" style="border: none;background: none;color: black;text-align: center;" name="item_id"><option value="<?= $item['id'] ?>"><?= $item['item'] ?></option></select>
+		                    		<select class="custom-select" style="border: none;background: none;color: black;text-align: center;text-transform: capitalize;" name="item_id"><option value="<?= $item['id'] ?>"><?= $item['item'] ?></option></select>
 		                    		<p class="price"><?= rupiah($item['price']) ?>/pcs</p>
 		                    		<p>Stock = <?= $item['stock'] ?> pcs</p>
 		                    		<input type="number" name="qty" class="<?= $item['item'] ?> qty_item qty p-2" min="0" max="<?= $item['stock'] ?>" oninput="check(<?= $item['price'] ?>)">
 		                    		<!-- <p class="pt-3">Total IDR.<span style="" type="text" name="total_price" readonly class="total_price"></span></p> -->
-		                    		<br><button class="mt-3 btn btn-sm btn-outline-google" type="submit"><i class="mdi mdi-cart-plus"></i></button>
+		                    		<br><button class="my-3 btn btn-sm btn-outline-google" type="submit"><i class="mdi mdi-cart-plus"></i></button>
 	                    		</form>
 	                    	</div>
 	                    </div>
@@ -81,7 +90,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-lg-12 grid-margin stretch-card">
+							<div data-aos="zoom-in" data-aos-offset="400" class="col-lg-12 grid-margin stretch-card">
 								<div class="card">
 									<div class="card-body">
                     <div class="row mb-3">
@@ -89,41 +98,64 @@
                         <h4 class="card-title">Order</h4>                    
                       </div>
                       <div class="col-md-4 text-right">
+                        <h4 class="card-title"><?= $_SESSION['name'] ?><br><span class="text-muted" style="font-size: 0.7em"><i>User</i></span></h4>                    
                       </div>
                     </div>
                     <div class="row">
-				          <h6 class="p-3 mb-0"><i class="mdi mdi-cart"></i> Cart</h6>
-				          <table class="table table-striped">
-				            <tr>
-				              <th>No</th>
+				          <h6 id="cart" class="p-3 mb-0"><i class="mdi mdi-cart"></i> Cart</h6>
+				          <table class="table table-bordered table-hover">
+				            <tr class="bg-light">
+				              <th style="width: 50px;">No</th>
 				              <th>Item</th>
 				              <th>Qty</th>
 				              <th>Total</th>
-				              <th>Action</th>
+				              <th width="100px" class="text-center">Action</th>
 				            </tr>
 				          <?php 
 				            $cart_data = $db->data_cart_show('order_cart', $_SESSION['id']);
 				            $no = 1;
 				            if (empty($cart_data)) {
-				              echo "nothing items";
+				              echo "Nothing item";
 				            } else {
 				            foreach ($cart_data as $data) { 
 				              $item = $db->get_data_from_id('item',$data['item_id']);
 				              ?>
 				              <tr>
 				                <td><?= $no++ ?></td>
-				                <td><?= $item['item'] ?></td>
+				                <td style="text-transform: capitalize;"><?= $item['item'] ?></td>
 				                <td><?= $data['qty'] ?></td>
-				                <td><?= $data['total'] ?></td>
-				                <td>
+				                <td><?= rupiah($data['total']) ?></td>
+				                <td class="text-center">
 				                  <a href="" class="text-warning"><i class="mdi mdi-minus-circle"></i></a>
 				                  <a href="" class="text-info"><i class="mdi mdi-plus-circle"></i></a>
 				                  <a href="" class="text-danger"><i class="mdi mdi-close-circle"></i></a>
 				                </td>
 				              </tr>
 				              <?php } } ?>
+				              <tr style="font-weight: bolder;">
+				              	<td colspan="2">Total</td>
+				              	<td class="text-right"><?php 
+				              			$qty_tot=$db->counting('qty','order_cart', $_SESSION['id']);
+				              	 	?>asd</td>
+				              	<td class="text-right">asd</td>
+				              </tr>
 				              </table>
-				              <button class="btn btn-sm btn-primary mb-2 text-center">Buy Now</button>
+				              <div class="col-md-12">
+				              	<form class="mt-3">
+				              		<input type="hidden" name="user_id" value="<?= $_SESSION['id'] ?>">
+													<div class="form-group">
+													  <label for="table">Table</label>
+		 											  <select class="form-control" id="table" name="table">
+		 											  	<?php foreach ($tables as $table) { ?>
+		 											    <option value="<?= $table['id'] ?>"><?= $table['tables'] ?></option>
+		 											  	<?php } ?>
+		 											  </select>
+													</div>
+													<div class="text-right w-100">													
+							              <button class="btn btn-lg btn-primary mb-2 text-center mt-3"><i class="mdi mdi-cart"></i> Buy Now!</button>
+													</div>			              	
+					              </form>	
+				              </div>
                     </div>
 									</div>
 								</div>
