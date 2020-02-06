@@ -96,10 +96,10 @@
 		{
 			mysqli_query($this->connect, "UPDATE item SET stock='$stock' WHERE id='$id'");
 		}
-		public function counting($count, $table,$user_id)
-		{
-			mysqli_query($this->connect, "SELECT COUNT('$count') FROM '$table' WHERE user_id = '$user_id'");
-		}
+		// public function counting($count, $table, $user_id)
+		// {
+		// 	mysqli_query($this->connect, "SELECT sum(".$count.") FROM ".$table." WHERE user_id='$user_id'")->fetch_assoc();
+		// }
 
 // Order
 		public function order_add($table, $item, $qty, $tot)

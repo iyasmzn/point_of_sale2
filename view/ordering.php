@@ -131,18 +131,22 @@
 				                  <a href="" class="text-danger"><i class="mdi mdi-close-circle"></i></a>
 				                </td>
 				              </tr>
-				              <?php } } ?>
+				              <?php } } 
+				              	$user_id = $_SESSION['id'];
+												$qty_tot = mysqli_query($db->connect, "SELECT sum(qty) FROM order_cart WHERE user_id='$user_id'")->fetch_assoc();
+												$tot_tot = mysqli_query($db->connect, "SELECT sum(total) FROM order_cart WHERE user_id='$user_id'")->fetch_assoc();
+											?>
 				              <tr style="font-weight: bolder;">
 				              	<td colspan="2">Total</td>
-				              	<td class="text-right"><?php 
-				              			$qty_tot=$db->counting('qty','order_cart', $_SESSION['id']);
-				              	 	?>asd</td>
-				              	<td class="text-right">asd</td>
+				              	<td class="text-right"><?= $qty_tot['sum(qty)']; ?></td>
+				              	<td class="text-center" colspan="2"><?= rupiah($tot_tot['sum(total)']); ?></td>
 				              </tr>
 				              </table>
 				              <div class="col-md-12">
 				              	<form class="mt-3">
 				              		<input type="hidden" name="user_id" value="<?= $_SESSION['id'] ?>">
+				              		<input type="hidden" name="qty" value="<?= $qty_tot['sum(qty)']; ?>">
+				              		<input type="hidden" name="total" value="<?= $tot_tot['sum(total)']; ?>">
 													<div class="form-group">
 													  <label for="table">Table</label>
 		 											  <select class="form-control" id="table" name="table">
