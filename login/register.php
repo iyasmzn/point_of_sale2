@@ -100,7 +100,7 @@
                       </div>
                       <div class="row">
                         <div class="col-md-12 text-center">
-                          <button type="submit" class="btn btn-md btn-gradient-success">Submit <i class="mdi mdi-chevron-right"></i></button>
+                          <button type="submit" class="btn btn-md btn-gradient-success">Sign Up <i class="mdi mdi-chevron-right"></i></button>
                         </div>
                       </div>
                     </form>

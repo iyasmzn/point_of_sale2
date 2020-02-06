@@ -55,12 +55,12 @@
 									<div class="card-body">
                     <div class="row mb-3">
                       <div class="col-md-8">
-                        <h4 class="card-title" data-aos="fade-down" data-aos-delay="400">Items</h4>                    
+                        <h4 class="card-title" data-aos="fade-up" data-aos-delay="400">Items</h4>                    
                       </div>
                       <div class="col-md-4 text-right">
                       </div>
                     </div>
-										<div class="row">
+										<div class="row" style="height: 35vw;overflow: scroll;">
                     <?php 
                     $delay = 500;
                     function rupiah($rp) {
@@ -90,7 +90,7 @@
 									</div>
 								</div>
 							</div>
-							<div data-aos="zoom-in" data-aos-offset="400" class="col-lg-12 grid-margin stretch-card">
+							<div id="cart" data-aos="zoom-in" data-aos-offset="400" class="col-lg-12 grid-margin stretch-card">
 								<div class="card">
 									<div class="card-body">
                     <div class="row mb-3">
@@ -102,7 +102,7 @@
                       </div>
                     </div>
                     <div class="row">
-				          <h6 id="cart" class="p-3 mb-0"><i class="mdi mdi-cart"></i> Cart</h6>
+				          <h6 class="p-3 mb-0"><i class="mdi mdi-cart"></i> Cart</h6>
 				          <table class="table table-bordered table-hover">
 				            <tr class="bg-light">
 				              <th style="width: 50px;">No</th>
@@ -143,12 +143,12 @@
 				              </tr>
 				              </table>
 				              <div class="col-md-12">
-				              	<form class="mt-3">
+				              	<form class="mt-3" method="post" action="../config/proccess.php?action=order_user_add">
 				              		<input type="hidden" name="user_id" value="<?= $_SESSION['id'] ?>">
 				              		<input type="hidden" name="qty" value="<?= $qty_tot['sum(qty)']; ?>">
 				              		<input type="hidden" name="total" value="<?= $tot_tot['sum(total)']; ?>">
 													<div class="form-group">
-													  <label for="table">Table</label>
+													  <label for="table">Table Place</label>
 		 											  <select class="form-control" id="table" name="table">
 		 											  	<?php foreach ($tables as $table) { ?>
 		 											    <option value="<?= $table['id'] ?>"><?= $table['tables'] ?></option>

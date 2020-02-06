@@ -12,6 +12,13 @@
 			$this->connect = mysqli_connect('localhost', 'root', 'iyasmzn7', 'tugas_PointOfSale2');
 		}
 
+// Login
+		public function login_proccess($name, $password)
+		{
+			$res = mysqli_query($this->connect, "SELECT * FROM users WHERE name='".$name."' AND password='".$password."'");			
+			return $res->fetch_assoc();
+		}
+
 // For Public 
 		public function data_show($table) 
 		{
@@ -115,11 +122,12 @@
 			return $data;
 		}
 
-// Login
-		public function login_proccess($name, $password)
+// Order2
+		public function order_user_add($user, $qty, $total, $table)
 		{
-			$res = mysqli_query($this->connect, "SELECT * FROM users WHERE name='".$name."' AND password='".$password."'");			
-			return $res->fetch_assoc();
+			mysqli_query($this->connect, "INSERT INTO order_user (user_id, table_id, qty, payment) VALUES ('$user', '$table', '$qty', '$total')");
 		}
 	}	
+
+
  ?>

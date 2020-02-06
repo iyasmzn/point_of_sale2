@@ -143,15 +143,21 @@ elseif ($action == "order_add") {
 	$price = $data_item['price'];
 	$total = $_POST['qty'] * $price;
 	$db->order_add($_POST['table'], $_POST['item'], $_POST['qty'], $total);
-	// header('location:../order/order.php');
-	var_dump($total);
-	var_dump($_POST['table']);
-	var_dump($_POST['item']);
-	var_dump($_POST['qty']);
+	header('location:../order/order.php');
+	// var_dump($total);
+	// var_dump($_POST['table']);
+	// var_dump($_POST['item']);
+	// var_dump($_POST['qty']);
 }
 elseif ($action == 'order_delete') {
 	$db->data_delete('orders', $_GET['id']);
 	header('location:../order/order.php');
+}
+
+// ORDER2
+elseif ($action == "order_user_add") {
+	$db->order_user_add($_POST['user_id'], $_POST['qty'], $_POST['total'], $_POST['table']);
+	header('location:../order/order2.php');
 }
 
  ?>
