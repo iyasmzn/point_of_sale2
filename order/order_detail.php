@@ -74,7 +74,7 @@
                           <th>Total</th>
                         </tr>
                   <?php 
-                    $cart_data = $db->data_cart_show('order_cart', $user_iddd);
+                    $cart_data = $db->data_cart_show('order_detail', $user_iddd);
                     $no = 1;
                     if (empty($cart_data)) {
                       echo "Nothing item";
