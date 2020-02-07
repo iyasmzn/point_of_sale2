@@ -101,7 +101,11 @@
 		}
 		public function order_detail_from_cart_add($category_id, $item_id, $qty, $total, $user_id)
 		{
-			mysqli_query($this->connect, "INSERT INTO order_user (category_id, item_id, qty, total, user_id) VALUES ('$category_id', '$item_id', '$qty', '$total', '$user_id')");
+			mysqli_query($this->connect, "INSERT INTO order_detail (category_id, item_id, qty, total, table_id, user_id, datte) VALUES ('$category_id', '$item_id', '$qty', '$total', NULL, '$user_id', NULL)");
+		}
+		public function order_detail_from_cart_update($item_id, $qty, $total, $user_id)
+		{
+			mysqli_query($this->connect, "UPDATE order_detail SET qty='$qty', total='$total', table_id=NULL, datte=NULL WHERE user_id='$user_id' AND item_id='$item_id'");
 		}
 		public function update_item_cart($qty,$item, $id, $tot)
 		{

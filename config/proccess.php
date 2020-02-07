@@ -119,15 +119,16 @@ elseif ($action == "add_to_cart") {
 	}
 		if ($_POST['item_id'] == $daa['item_id']) {
 			$db->update_item_cart($qtyy, $_POST['item_id'],$_POST['user_id'], $total1);
+			$db->order_detail_from_cart_update($_POST['item_id'], $qtyy, $total1, $_POST['user_id']);
 			$db->update_item_qty($stock_new, $_POST['item_id']);
-			header('location:../view/ordering.php');	
+			// header('location:../view/ordering.php');	
 		}
 		else {
 			$total2 = $data_item['price']*$_POST['qty'];
 			$db->add_to_cart($_POST['user_id'], $_POST['item_id'], $_POST['qty'], $total2);
 			$db->order_detail_from_cart_add($_POST['category_id'], $_POST['item_id'], $_POST['qty'], $total2, $_POST['user_id']);
 			$db->update_item_qty($stock_new, $_POST['item_id']);
-			// header('location:../view/ordering.php');	
+			header('location:../view/ordering.php');	
 		}
 	echo "qty++ = ".$qtyy;
 	echo "<br>";
