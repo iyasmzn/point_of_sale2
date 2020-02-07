@@ -60,7 +60,7 @@
                       <div class="col-md-4 text-right">
                       </div>
                     </div>
-										<div class="row" style="height: 35vw;overflow: scroll;">
+										<div class="row" style="height: 40vw;overflow: scroll;">
                     <?php 
                     $delay = 500;
                     function rupiah($rp) {
@@ -74,6 +74,7 @@
 	                    	<div class="item-card bg-light mx-2 p-2 text-dark text-center" style="border-radius: 20px;text-transform: capitalize;">
 	                    		<form method="post" action="../config/proccess.php?action=add_to_cart" style="border: 1px solid white;border-radius: 15px;">
 	                    			<input type="hidden" name="user_id" value="<?= $_SESSION['id'] ?>">
+	                    			<input type="hidden" name="category_id" value="<?= $item['category_id'] ?>">
 		                    		<p class="text-muted"><?= $cate['category_name'] ?></p>
 		                    		<!-- <h3 name="item_id"></h3> -->
 		                    		<select class="custom-select" style="border: none;background: none;color: black;text-align: center;text-transform: capitalize;" name="item_id"><option value="<?= $item['id'] ?>"><?= $item['item'] ?></option></select>
@@ -147,13 +148,21 @@
 				              		<input type="hidden" name="user_id" value="<?= $_SESSION['id'] ?>">
 				              		<input type="hidden" name="qty" value="<?= $qty_tot['sum(qty)']; ?>">
 				              		<input type="hidden" name="total" value="<?= $tot_tot['sum(total)']; ?>">
-													<div class="form-group">
-													  <label for="table">Table Place</label>
-		 											  <select class="form-control" id="table" name="table">
-		 											  	<?php foreach ($tables as $table) { ?>
-		 											    <option value="<?= $table['id'] ?>"><?= $table['tables'] ?></option>
-		 											  	<?php } ?>
-		 											  </select>
+													<div class="form-group row">
+													  <label for="date" class="col-2 col-form-label">Date</label>
+													  <div class="col-10">
+													    <input class="form-control" type="date" value="" id="date" name="date">
+													  </div>
+													</div>
+													<div class="form-group row">
+													  <label for="table" class="col-2 col-form-label">Table Place</label>
+													  <div class="col-10">
+													  	<select class="form-control" id="table" name="table">
+													  		<?php foreach ($tables as $table) { ?>
+													  	  <option value="<?= $table['id'] ?>"><?= $table['tables'] ?></option>
+													  		<?php } ?>
+													  	</select>	
+													  </div>
 													</div>
 													<div class="text-right w-100">													
 							              <button class="btn btn-lg btn-primary mb-2 text-center mt-3"><i class="mdi mdi-cart"></i> Buy Now!</button>

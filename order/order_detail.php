@@ -59,7 +59,7 @@
                         <h4 class="card-title">Order</h4>                    
                       </div>
                       <div class="col-md-4 text-right">
-                        <h4 class="card-title"><?= $user_data['name'] ?><br><span class="text-muted" style="font-size: 0.7em"><i>User</i></span></h4>                    
+                        <h4 class="card-title"><?= $user_data['name'] ?><br><span class="text-muted" style="font-size: 0.7em"><i>Orderer</i></span></h4>                    
                       </div>
                     </div>
                   <h6 class="mb-0 text-muted"><i class="mdi mdi-table"></i> Table Seat</h6>

@@ -125,8 +125,9 @@ elseif ($action == "add_to_cart") {
 		else {
 			$total2 = $data_item['price']*$_POST['qty'];
 			$db->add_to_cart($_POST['user_id'], $_POST['item_id'], $_POST['qty'], $total2);
+			$db->order_detail_from_cart_add($_POST['category_id'], $_POST['item_id'], $_POST['qty'], $total2, $_POST['user_id']);
 			$db->update_item_qty($stock_new, $_POST['item_id']);
-			header('location:../view/ordering.php');	
+			// header('location:../view/ordering.php');	
 		}
 	echo "qty++ = ".$qtyy;
 	echo "<br>";
@@ -135,6 +136,8 @@ elseif ($action == "add_to_cart") {
 	echo "stock item = ".$data_item['stock'];
 	echo "<br>";
 	echo "stock item update = ".$stock_new;
+	echo "<br>";
+	echo "category_id = ".$_POST['category_id'];
 }
 
 // ORDER
@@ -157,6 +160,7 @@ elseif ($action == 'order_delete') {
 // ORDER2
 elseif ($action == "order_user_add") {
 	$db->order_user_add($_POST['user_id'], $_POST['qty'], $_POST['total'], $_POST['table']);
+	$db->order_cart_delete($_POST['user_id']);
 	header('location:../order/order2.php');
 }
 

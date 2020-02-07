@@ -26,7 +26,11 @@
 			while ($row = mysqli_fetch_array($res)) {
 				$data[] = $row;
 			}
+			if (empty($data)) {
+				return "";
+			} else  {
 			return $data;
+			}
 		}
 		public function get_data_from_id($table,$id)
 		{
@@ -95,6 +99,10 @@
 		{
 			mysqli_query($this->connect, "INSERT INTO order_cart ( user_id,	 item_id, qty, total ) VALUES ('$user','$item','$qty','$tot') ");
 		}
+		public function order_detail_from_cart_add($category_id, $item_id, $qty, $total, $user_id)
+		{
+			mysqli_query($this->connect, "INSERT INTO order_user (category_id, item_id, qty, total, user_id) VALUES ('$category_id', '$item_id', '$qty', '$total', '$user_id')");
+		}
 		public function update_item_cart($qty,$item, $id, $tot)
 		{
 			mysqli_query($this->connect, "UPDATE order_cart SET qty='$qty', total='$tot' WHERE user_id='$id' AND item_id='$item'");
@@ -126,6 +134,10 @@
 		public function order_user_add($user, $qty, $total, $table)
 		{
 			mysqli_query($this->connect, "INSERT INTO order_user (user_id, table_id, qty, payment) VALUES ('$user', '$table', '$qty', '$total')");
+		}
+		public function order_cart_delete($id)
+		{
+			mysqli_query($this->connect, "DELETE FROM order_cart WHERE user_id='$id'");
 		}
 	}	
 

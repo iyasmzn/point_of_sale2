@@ -67,6 +67,9 @@
 														return $res_rp;
 													}
                           $no = 1;
+                          if (empty($orders_data)) {
+                            echo "";
+                          }else {
                           foreach ($orders_data as $data) {
                             $user = $db->get_data_from_id('users',$data['user_id']);
                             $table = $db->get_data_from_id('tables',$data['table_id']);
@@ -83,7 +86,7 @@
                         </td>
                       </tbody>
                         <?php 
-                          }
+                          } }
                          ?>
                     </table>
                   </div>
