@@ -52,37 +52,39 @@
                         <a href="item_add.php" class="btn btn-md px-3 btn-gradient-info"><i class="mdi mdi-plus"></i></a>
                       </div>
                     </div>
-										<table class="table table-hover table-bordered">
-											<thead class=" text-info">
-												<th style="width: 20px">No</th>
-												<th>Item</th>
-												<th>Category</th>
-												<th>Price</th>
-												<th>Stock</th>
-												<th>Status</th>
-												<th class="text-center" style="width: 50px">Action</th>
-											</thead>
-												<?php 
-													$no = 1;
-													foreach ($data_items as $data) {
-														$cate = $db->get_data_from_id('category',$data['category_id']);
-												?>
-											<tbody>
-												<td><?= $no++ ?></td>
-												<td><?= $data['item'] ?></td>
-												<td><?= $cate['category_name'] ?></td>
-												<td><?= $data['price'] ?></td>
-												<td><?= $data['stock'] ?></td>
-												<td><?= ($data['status'])?"<p class='badge badge-gradient-success px-2'><i class='mdi mdi-check-circle'></i> active</p>":"<p class='badge badge-sm badge-gradient-danger px-2' style='border: 0px;box-shadow: none;'><i class='mdi mdi-close-circle'></i> not active</p>" ?></td>
-												<td>
-													<a href="./item_edit.php?id=<?= $data['id'] ?>" class="btn btn-xs btn-warning"><i class="mdi mdi-settings"></i></a>
-													<a href="/var/www/html/project/PointOfSale2/config/proccess.php?id=<?= $data['id']; ?>&action=item_delete" class="btn btn-xs btn-danger"><i class="mdi mdi-trash-can"></i></a>
-												</td>
-											</tbody>
-												<?php 
-													}
-												 ?>
-										</table>
+                    <div  style="height: 30vw;overflow: scroll;">
+											<table class="table table-hover table-bordered">
+												<thead class=" text-info">
+													<th style="width: 20px">No</th>
+													<th>Item</th>
+													<th>Category</th>
+													<th>Price</th>
+													<th>Stock</th>
+													<th>Status</th>
+													<th class="text-center" style="width: 50px">Action</th>
+												</thead>
+													<?php 
+														$no = 1;
+														foreach ($data_items as $data) {
+															$cate = $db->get_data_from_id('category',$data['category_id']);
+													?>
+												<tbody>
+													<td><?= $no++ ?></td>
+													<td><?= $data['item'] ?></td>
+													<td><?= $cate['category_name'] ?></td>
+													<td><?= $data['price'] ?></td>
+													<td><?= $data['stock'] ?></td>
+													<td><?= ($data['status'])?"<p class='badge badge-gradient-success px-2'><i class='mdi mdi-check-circle'></i> active</p>":"<p class='badge badge-sm badge-gradient-danger px-2' style='border: 0px;box-shadow: none;'><i class='mdi mdi-close-circle'></i> not active</p>" ?></td>
+													<td>
+														<a href="./item_edit.php?id=<?= $data['id'] ?>" class="btn btn-xs btn-warning"><i class="mdi mdi-settings"></i></a>
+														<a href="/var/www/html/project/PointOfSale2/config/proccess.php?id=<?= $data['id']; ?>&action=item_delete" class="btn btn-xs btn-danger"><i class="mdi mdi-trash-can"></i></a>
+													</td>
+												</tbody>
+													<?php 
+														}
+													 ?>
+											</table>
+										</div>
 									</div>
 								</div>
 							</div>

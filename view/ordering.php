@@ -70,7 +70,7 @@
                     foreach ($data_items as $item) { 
 											$cate = $db->get_data_from_id('category',$item['category_id']);
                     	?>
-                    	<div class="col-sm-4 my-2" data-aos="zoom-in" data-aos-offset="0" data-aos-delay="<?= $delay+=200 ?>">
+                    	<div class="col-sm-4 my-2">
 	                    	<div class="item-card bg-light mx-2 p-2 text-dark text-center" style="border-radius: 20px;text-transform: capitalize;">
 	                    		<form method="post" action="../config/proccess.php?action=add_to_cart" style="border: 1px solid white;border-radius: 15px;">
 	                    			<input type="hidden" name="user_id" value="<?= $_SESSION['id'] ?>">
