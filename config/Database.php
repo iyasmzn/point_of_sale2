@@ -126,6 +126,14 @@
 		// }
 
 // Order2
+		public function data_id_item($table) 
+		{
+			$res = mysqli_query($this->connect, "SELECT * FROM ".$table." WHERE stock > 0 AND status='1'");
+			while ($row = mysqli_fetch_array($res)) {
+				$data[] = $row;
+			}
+			return $data;
+		}
 		public function order_user_add($user, $qty, $total, $table)
 		{
 			mysqli_query($this->connect, "INSERT INTO order_user (user_id, table_id, qty, payment) VALUES ('$user', '$table', '$qty', '$total')");
