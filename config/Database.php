@@ -95,17 +95,22 @@
 			return $data;
 			}
 		}
+		public function get_data_cart_from_id($table,$id,$item)
+		{
+			$query = mysqli_query($this->connect, "SELECT * FROM ".$table." WHERE user_id='$id' and item_id='$item'");
+			return $query->fetch_assoc();
+		}
 		public function add_to_cart($user, $item, $qty, $tot)
 		{
 			mysqli_query($this->connect, "INSERT INTO order_cart ( user_id,	 item_id, qty, total ) VALUES ('$user','$item','$qty','$tot') ");
 		}
-		public function order_detail_from_cart_add($category_id, $item_id, $qty, $total, $user_id)
+		public function order_detail_from_cart_add($category_id, $item_id, $qty, $total, $user_id, $status)
 		{
-			mysqli_query($this->connect, "INSERT INTO order_detail (category_id, item_id, qty, total, user_id) VALUES ('$category_id', '$item_id', '$qty', '$total', '$user_id')");
+			mysqli_query($this->connect, "INSERT INTO order_detail (category_id, item_id, qty, total, user_id, status, code_trx) VALUES ('$category_id', '$item_id', '$qty', '$total', '$user_id', '$status', NULL)");
 		}
-		public function order_detail_from_cart_update($item_id, $qty, $total, $user_id)
+		public function order_detail_from_cart_update($item_id, $qty, $total, $user_id, $status)
 		{
-			mysqli_query($this->connect, "UPDATE order_detail SET qty='$qty', total='$total' WHERE user_id='$user_id' AND item_id='$item_id'");
+			mysqli_query($this->connect, "UPDATE order_detail SET qty='$qty', total='$total' WHERE user_id='$user_id' AND item_id='$item_id' AND status='$status'");
 		}
 		public function update_item_cart($qty,$item, $id, $tot)
 		{
@@ -120,28 +125,30 @@
 		// 	mysqli_query($this->connect, "SELECT sum(".$count.") FROM ".$table." WHERE user_id='$user_id'")->fetch_assoc();
 		// }
 
-// Order
-		public function order_add($table, $item, $qty, $tot)
-		{
-			mysqli_query($this->connect, "INSERT INTO orders (item_id, qty, table_place, total) VALUES ('$item', '$qty', '$table', '$tot')");
-		}
-		public function data_id_item($table) 
-		{
-			$res = mysqli_query($this->connect, "SELECT * FROM ".$table." WHERE stock > 0 AND status='1'");
-			while ($row = mysqli_fetch_array($res)) {
-				$data[] = $row;
-			}
-			return $data;
-		}
-
 // Order2
 		public function order_user_add($user, $qty, $total, $table)
 		{
 			mysqli_query($this->connect, "INSERT INTO order_user (user_id, table_id, qty, payment) VALUES ('$user', '$table', '$qty', '$total')");
 		}
+		public function order_detail_from_cart_update2($code, $user)
+		{
+			mysqli_query($this->connect, "UPDATE order_detail SET code_trx='$code', status=1 WHERE user_id='$user' and status=0");
+		}
 		public function order_cart_delete($id)
 		{
 			mysqli_query($this->connect, "DELETE FROM order_cart WHERE user_id='$id'");
+		}
+
+// Random Code
+		public function code_trx($num)
+		{
+			$char 		= "1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+			$Random 	=	"";
+			for ($i=0; $i < $num; $i++) { 
+			 	$index 	=	rand(0, strlen($char) - 1); 
+			 	$Random .= $char[$index]; 
+			 } 
+			 return $Random;
 		}
 	}	
 

@@ -109,26 +109,24 @@ elseif ($action == "table_delete") {
 
 // Cart
 elseif ($action == "add_to_cart") {
-	$data = $db->data_cart_show('order_cart',$_POST['user_id']);
+	$data = $db->get_data_cart_from_id('order_cart',$_POST['user_id'],$_POST['item_id']);
 	$data_item = $db->get_data_from_id('item',$_POST['item_id']);
 	$stock_new = $data_item['stock'] - $_POST['qty'];
-	foreach ($data as $daa) {	
-		var_dump($daa['qty']."<br>");
-			$qtyy = $daa['qty'] + $_POST['qty'];
+		var_dump($data['qty']."<br>");
+			$qtyy = $data['qty'] + $_POST['qty'];
 			$total1 = $data_item['price']*$qtyy;
-	}
-		if ($_POST['item_id'] == $daa['item_id']) {
-			$db->update_item_cart($qtyy, $_POST['item_id'],$_POST['user_id'], $total1);
-			$db->order_detail_from_cart_update($_POST['item_id'], $qtyy, $total1, $_POST['user_id']);
+		if (!($_POST['item_id'] == $data['item_id'])) {
+			$total2 = $data_item['price']*$_POST['qty'];
+			$db->add_to_cart($_POST['user_id'], $_POST['item_id'], $_POST['qty'], $total2);
+			$db->order_detail_from_cart_add($_POST['category_id'], $_POST['item_id'], $_POST['qty'], $total2, $_POST['user_id'],$_POST['status']);
 			$db->update_item_qty($stock_new, $_POST['item_id']);
 			// header('location:../view/ordering.php');	
 		}
-		else {
-			$total2 = $data_item['price']*$_POST['qty'];
-			$db->add_to_cart($_POST['user_id'], $_POST['item_id'], $_POST['qty'], $total2);
-			$db->order_detail_from_cart_add($_POST['category_id'], $_POST['item_id'], $_POST['qty'], $total2, $_POST['user_id']);
+		else {	
+			$db->update_item_cart($qtyy, $_POST['item_id'],$_POST['user_id'], $total1);
+			$db->order_detail_from_cart_update($_POST['item_id'], $qtyy, $total1, $_POST['user_id'], $_POST['status']);
 			$db->update_item_qty($stock_new, $_POST['item_id']);
-			header('location:../view/ordering.php');	
+			// header('location:../view/ordering.php');
 		}
 	echo "qty++ = ".$qtyy;
 	echo "<br>";
@@ -141,28 +139,13 @@ elseif ($action == "add_to_cart") {
 	echo "category_id = ".$_POST['category_id'];
 }
 
-// ORDER
-elseif ($action == "order_add") {
-	$data_item = $db->get_data_from_id('item',$_POST['item']);
-	$price = $data_item['price'];
-	$total = $_POST['qty'] * $price;
-	$db->order_add($_POST['table'], $_POST['item'], $_POST['qty'], $total);
-	header('location:../order/order.php');
-	// var_dump($total);
-	// var_dump($_POST['table']);
-	// var_dump($_POST['item']);
-	// var_dump($_POST['qty']);
-}
-elseif ($action == 'order_delete') {
-	$db->data_delete('orders', $_GET['id']);
-	header('location:../order/order.php');
-}
-
 // ORDER2
 elseif ($action == "order_user_add") {
 	$db->order_user_add($_POST['user_id'], $_POST['qty'], $_POST['total'], $_POST['table']);
+	$db->order_detail_from_cart_update2($_POST['code_trx'], $_POST['user_id']);
 	$db->order_cart_delete($_POST['user_id']);
-	header('location:../order/order2.php');
+	var_dump($_POST['code_trx']);
+	// header('location:../order/order2.php');
 }
 
  ?>

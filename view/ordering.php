@@ -75,6 +75,7 @@
 	                    		<form method="post" action="../config/proccess.php?action=add_to_cart" style="border: 1px solid white;border-radius: 15px;">
 	                    			<input type="hidden" name="user_id" value="<?= $_SESSION['id'] ?>">
 	                    			<input type="hidden" name="category_id" value="<?= $item['category_id'] ?>">
+	                    			<input type="hidden" name="status" value="0">
 		                    		<p class="text-muted"><?= $cate['category_name'] ?></p>
 		                    		<!-- <h3 name="item_id"></h3> -->
 		                    		<select class="custom-select" style="border: none;background: none;color: black;text-align: center;text-transform: capitalize;" name="item_id"><option value="<?= $item['id'] ?>"><?= $item['item'] ?></option></select>
@@ -148,6 +149,7 @@
 				              		<input type="hidden" name="user_id" value="<?= $_SESSION['id'] ?>">
 				              		<input type="hidden" name="qty" value="<?= $qty_tot['sum(qty)']; ?>">
 				              		<input type="hidden" name="total" value="<?= $tot_tot['sum(total)']; ?>">
+				              		<input type="text" name="code_trx" value="<?= $db->code_trx(10); ?>">
 													<div class="form-group row">
 													  <label for="date" class="col-2 col-form-label">Date</label>
 													  <div class="col-10">
