@@ -5,8 +5,9 @@
   if (isset($_SESSION['name'])) {
   $user_iddd        = $_GET['user_id'];
   $order_iddd        = $_GET['id'];
+  $code_trx        = $_GET['code_trx'];
   $db               = new Database();
-  $orders_data      = $db->data_show('order_user');
+  $orders_data      = $db->get_data_from_id('order_user', $order_iddd);
   $user_data        = $db->get_data_from_id('users',$user_iddd);
   $user_data_order  = $db->get_data_from_id('order_user',$order_iddd);
   $table_id         = $user_data_order['table_id'];
@@ -55,8 +56,11 @@
                 <div class="card">
                   <div class="card-body">
                     <div class="row mb-3">
-                      <div class="col-md-8">
+                      <div class="col-md-4">
                         <h4 class="card-title">Order</h4>                    
+                      </div>
+                      <div class="col-md-4">
+                        <h4 class="text-center text-muted"><?= $orders_data['datte'] ?></h4>                    
                       </div>
                       <div class="col-md-4 text-right">
                         <h4 class="card-title"><?= $user_data['name'] ?><br><span class="text-muted" style="font-size: 0.7em"><i>Orderer</i></span></h4>                    
@@ -74,7 +78,7 @@
                           <th>Total</th>
                         </tr>
                   <?php 
-                    $cart_data = $db->data_cart_show('order_detail', $user_iddd);
+                    $cart_data = $db->data_order_detail_show('order_detail', $user_iddd, $code_trx);
                     $no = 1;
                     if (empty($cart_data)) {
                       echo "Nothing item";

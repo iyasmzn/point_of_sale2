@@ -141,7 +141,7 @@ elseif ($action == "add_to_cart") {
 
 // ORDER2
 elseif ($action == "order_user_add") {
-	$db->order_user_add($_POST['user_id'], $_POST['qty'], $_POST['total'], $_POST['table']);
+	$db->order_user_add($_POST['user_id'], $_POST['qty'], $_POST['total'], $_POST['table'], $_POST['date'], $_POST['code_trx']);
 	$db->order_detail_from_cart_update2($_POST['code_trx'], $_POST['user_id']);
 	$db->order_cart_delete($_POST['user_id']);
 	var_dump($_POST['code_trx']);

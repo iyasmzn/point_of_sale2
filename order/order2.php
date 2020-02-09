@@ -55,6 +55,7 @@
                     <table class="table table-hover table-bordered">
                       <thead class=" text-info">
                         <th style="width: 20px">No</th>
+                        <th>Date</th>
                         <th>Name</th>
                         <th>Table Seat</th>
                         <th>Qty</th>
@@ -76,12 +77,13 @@
                         ?>
                       <tbody>
                         <td><?= $no++ ?></td>
+                        <td><?= $data['datte'] ?></td>
                         <td><?= $user['name'] ?></td>
                         <td><?= $table['tables'] ?></td>
                         <td><?= $data['qty'] ?></td>
                         <td><?= rupiah($data['payment']) ?></td>
                         <td>
-                          <a href="./order_detail.php?id=<?= $data['id'] ?>&user_id=<?= $data['user_id'] ?>" class="btn btn-xs btn-twitter"><i class="mdi mdi-eye"></i></a>
+                          <a href="./order_detail.php?id=<?= $data['id'] ?>&user_id=<?= $data['user_id'] ?>&code_trx=<?= $data['code_trx'] ?>" class="btn btn-xs btn-twitter"><i class="mdi mdi-eye"></i></a>
                           <a href="/project/PointOfSale2/config/proccess.php?id=<?= $data['id']; ?>&action=order_delete" class="btn btn-xs btn-danger"><i class="mdi mdi-trash-can"></i></a>
                         </td>
                       </tbody>

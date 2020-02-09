@@ -134,9 +134,9 @@
 			}
 			return $data;
 		}
-		public function order_user_add($user, $qty, $total, $table)
+		public function order_user_add($user, $qty, $total, $table, $date, $code)
 		{
-			mysqli_query($this->connect, "INSERT INTO order_user (user_id, table_id, qty, payment) VALUES ('$user', '$table', '$qty', '$total')");
+			mysqli_query($this->connect, "INSERT INTO order_user (user_id, table_id, qty, payment, datte, code_trx) VALUES ('$user', '$table', '$qty', '$total', '$date', '$code')");
 		}
 		public function order_detail_from_cart_update2($code, $user)
 		{
@@ -145,6 +145,23 @@
 		public function order_cart_delete($id)
 		{
 			mysqli_query($this->connect, "DELETE FROM order_cart WHERE user_id='$id'");
+		}
+		public function data_order_detail_show($table, $id, $code_trx) 
+		{
+			$res = mysqli_query($this->connect, "SELECT * FROM ".$table." WHERE user_id ='$id' and code_trx='$code_trx'");
+			while ($row = mysqli_fetch_array($res)) {
+				$data[] = $row;
+			}
+			if (empty($data)) {
+				return "";
+			} else  {
+			return $data;
+			}
+		}
+		public function get_order_data_from_code($table,$id,$code)
+		{
+			$query = mysqli_query($this->connect, "SELECT * FROM ".$table." WHERE user_id='$id' and code_trx='$code'");
+			return $query->fetch_assoc();
 		}
 
 // Random Code
