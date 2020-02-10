@@ -61,33 +61,33 @@
                       </div>
                     </div>
 										<div class="row" style="height: 40vw;overflow: scroll;">
-                    <?php 
-                    $delay = 500;
-                    function rupiah($rp) {
-											$res_rp = "Rp ".number_format($rp,2,',','.');
-											return $res_rp;
-										}
-                    foreach ($data_items as $item) { 
-											$cate = $db->get_data_from_id('category',$item['category_id']);
-                    	?>
-                    	<div class="col-sm-4 my-2">
-	                    	<div class="item-card bg-light mx-2 p-2 text-dark text-center" style="border-radius: 20px;text-transform: capitalize;">
-	                    		<form method="post" action="../config/proccess.php?action=add_to_cart" style="border: 1px solid white;border-radius: 15px;">
-	                    			<input type="hidden" name="user_id" value="<?= $_SESSION['id'] ?>">
-	                    			<input type="hidden" name="category_id" value="<?= $item['category_id'] ?>">
-	                    			<input type="hidden" name="status" value="0">
-		                    		<p class="text-muted"><?= $cate['category_name'] ?></p>
-		                    		<!-- <h3 name="item_id"></h3> -->
-		                    		<select class="custom-select" style="border: none;background: none;color: black;text-align: center;text-transform: capitalize;" name="item_id"><option value="<?= $item['id'] ?>"><?= $item['item'] ?></option></select>
-		                    		<p class="price"><?= rupiah($item['price']) ?>/pcs</p>
-		                    		<p>Stock = <?= $item['stock'] ?> pcs</p>
-		                    		<input type="number" name="qty" class="<?= $item['item'] ?> qty_item qty p-2" min="0" max="<?= $item['stock'] ?>" oninput="check(<?= $item['price'] ?>)">
-		                    		<!-- <p class="pt-3">Total IDR.<span style="" type="text" name="total_price" readonly class="total_price"></span></p> -->
-		                    		<br><button class="my-3 btn btn-sm btn-outline-google" type="submit"><i class="mdi mdi-cart-plus"></i></button>
-	                    		</form>
-	                    	</div>
-	                    </div>
-                   <?php } ?>
+	                    <?php 
+	                    $delay = 500;
+	                    function rupiah($rp) {
+												$res_rp = "Rp ".number_format($rp,2,',','.');
+												return $res_rp;
+											}
+	                    foreach ($data_items as $item) { 
+												$cate = $db->get_data_from_id('category',$item['category_id']);
+	                    	?>
+	                    	<div class="col-sm-4 my-2">
+		                    	<div class="item-card bg-light mx-2 p-2 text-dark text-center" style="border-radius: 20px;text-transform: capitalize;">
+		                    		<form method="post" action="../config/proccess.php?action=add_to_cart" style="border: 1px solid white;border-radius: 15px;">
+		                    			<input type="hidden" name="user_id" value="<?= $_SESSION['id'] ?>">
+		                    			<input type="hidden" name="category_id" value="<?= $item['category_id'] ?>">
+		                    			<input type="hidden" name="status" value="0">
+			                    		<p class="text-muted"><?= $cate['category_name'] ?></p>
+			                    		<!-- <h3 name="item_id"></h3> -->
+			                    		<select class="custom-select" style="border: none;background: none;color: black;text-align: center;text-transform: capitalize;" name="item_id"><option value="<?= $item['id'] ?>"><?= $item['item'] ?></option></select>
+			                    		<p class="price"><?= rupiah($item['price']) ?>/pcs</p>
+			                    		<p>Stock = <?= $item['stock'] ?> pcs</p>
+			                    		<input type="number" name="qty" class="<?= $item['item'] ?> qty_item qty p-2" min="0" max="<?= $item['stock'] ?>" oninput="check(<?= $item['price'] ?>)">
+			                    		<!-- <p class="pt-3">Total IDR.<span style="" type="text" name="total_price" readonly class="total_price"></span></p> -->
+			                    		<br><button class="my-3 btn btn-sm btn-outline-google" type="submit"><i class="mdi mdi-cart-plus"></i></button>
+		                    		</form>
+		                    	</div>
+		                    </div>
+	                   <?php } ?>
 										</div>
 									</div>
 								</div>
@@ -124,12 +124,11 @@
 				              ?>
 				              <tr>
 				                <td><?= $no++ ?></td>
-				                <td style="text-transform: capitalize;"><?= $item['item'] ?></td>
+				                <td><?= $item['item'] ?></td>
 				                <td><?= $data['qty'] ?></td>
 				                <td><?= rupiah($data['total']) ?></td>
 				                <td class="text-center">
-				                  <a href="" class="text-warning"><i class="mdi mdi-minus-circle"></i></a>
-				                  <a href="" class="text-info"><i class="mdi mdi-plus-circle"></i></a>
+				                  <a href="../config/proccess.php?id=<?= $data['id'] ?>&action=edit_or" class="text-info"><i class="mdi mdi-settings"></i></a>
 				                  <a href="" class="text-danger"><i class="mdi mdi-close-circle"></i></a>
 				                </td>
 				              </tr>

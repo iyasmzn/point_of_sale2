@@ -95,8 +95,8 @@
                         <td><?= rupiah($data['total']) ?></td>
                       </tr>
                       <?php } } 
-                        $qty_tot = mysqli_query($db->connect, "SELECT sum(qty) FROM order_cart WHERE user_id='$user_iddd'")->fetch_assoc();
-                        $tot_tot = mysqli_query($db->connect, "SELECT sum(total) FROM order_cart WHERE user_id='$user_iddd'")->fetch_assoc();
+                        $qty_tot = mysqli_query($db->connect, "SELECT sum(qty) FROM order_detail WHERE code_trx='$code_trx'")->fetch_assoc();
+                        $tot_tot = mysqli_query($db->connect, "SELECT sum(total) FROM order_detail WHERE code_trx='$code_trx'")->fetch_assoc();
                       ?>
                       <tr style="font-weight: bolder;">
                         <td colspan="2">Total</td>
