@@ -1,5 +1,8 @@
 <?php 
 	session_start();
+	require '/var/www/html/project/PointOfSale2/config/Database.php';
+	use PointOfSale2\Database;
+	$db = new Database();
 	if (isset($_SESSION['name'])) {
  ?>
 <!DOCTYPE html>

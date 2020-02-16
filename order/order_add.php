@@ -6,6 +6,7 @@
   $db = new Database();
   $tables = $db->data_show('tables');
   $data_items = $db->data_id_item('item');
+  $data_catte = $db->data_show('category');
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +14,7 @@
 		<!-- Required meta tags -->
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<title>Add Item | Point Os Sale</title>
+		<title>Order Add | Point Os Sale</title>
 		<!-- plugins:css -->
 		<?php include '../tmp/link.php'; ?>
 	</head>
@@ -32,7 +33,7 @@
 							<h3 class="page-title">
 								<span class="page-title-icon bg-gradient-success text-white mr-2">
 									<i class="mdi mdi-codepen"></i>
-								</span> Add New Items </h3>
+								</span> Add New Order </h3>
 							<nav aria-label="breadcrumb">
 								<ul class="breadcrumb">
 									<li class="breadcrumb-item active" aria-current="page">
@@ -45,10 +46,11 @@
 							<div class="col-lg-12 grid-margin stretch-card">
 								<div class="card">
 									<div class="card-body">
-										<h4 class="card-title">Add Kind Of Items</h4>
+										<h4 class="card-title">Add Order</h4>
 										<form class="form-sample" method="POST" action="../config/proccess.php?action=order_add">
+	              			<input type="hidden" name="user_id" value="<?= $_SESSION['id'] ?>">
 											<p class="card-description"> </p>
-											<div class="form-group row my-0">
+											<!-- <div class="form-group row my-0">
 												<div class="col-sm-12">
 													<div class="form-group">
 													  <label for="table">Table</label>
@@ -59,9 +61,23 @@
 		 											  </select>
 													</div>
 												</div>
-											</div>
+											  <label for="date" class="col-1 col-form-label">Date</label>
+											  <div class="col-10">
+											    <input class="form-control" type="date" value="" id="date" name="date">
+											  </div>
+											</div> -->
 											<div class="form-group row my-0">
-												<div class="col-sm-12">
+												<div class="col-sm-6">
+													<div class="form-group">
+													  <label for="category">Category</label>
+													  <select class="form-control" id="category" name="category">
+													  	<?php foreach ($data_catte as $data) { ?>
+													    <option value="<?= $data['id'] ?>"><?= $data['category_name'] ?></option>
+													  	<?php } ?>
+													  </select>
+													</div>
+												</div>
+												<div class="col-sm-6">
 													<div class="form-group">
 													  <label for="item">Item</label>
 													  <select class="form-control" id="item" name="item">

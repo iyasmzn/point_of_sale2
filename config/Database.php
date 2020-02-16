@@ -163,6 +163,10 @@
 			$query = mysqli_query($this->connect, "SELECT * FROM ".$table." WHERE user_id='$id' and code_trx='$code'");
 			return $query->fetch_assoc();
 		}
+		public function delete_order_detail_data($code)
+		{
+			mysqli_query($this->connect, "DELETE FROM order_detail WHERE code_trx='$code'");
+		}
 
 // Random Code
 		public function code_trx($num)

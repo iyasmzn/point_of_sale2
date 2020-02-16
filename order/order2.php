@@ -84,7 +84,7 @@
                         <td><?= rupiah($data['payment']) ?></td>
                         <td>
                           <a href="./order_detail.php?id=<?= $data['id'] ?>&user_id=<?= $data['user_id'] ?>&code_trx=<?= $data['code_trx'] ?>" class="btn btn-xs btn-twitter"><i class="mdi mdi-eye"></i></a>
-                          <a href="/project/PointOfSale2/config/proccess.php?id=<?= $data['id']; ?>&action=order_delete" class="btn btn-xs btn-danger"><i class="mdi mdi-trash-can"></i></a>
+                          <a href="/project/PointOfSale2/config/proccess.php?id=<?= $data['id'] ?>&code_trx=<?= $data['code_trx'] ?>&action=order_delete" class="btn btn-xs btn-danger"><i class="mdi mdi-trash-can"></i></a>
                         </td>
                       </tbody>
                         <?php 

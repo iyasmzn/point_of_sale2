@@ -147,5 +147,11 @@ elseif ($action == "order_user_add") {
 	var_dump($_POST['code_trx']);
 	// header('location:../order/order2.php');
 }
+elseif ($action == "order_delete") {
+	$db->data_delete('order_user',$_GET['id']);
+	$db->delete_order_detail_data($_GET['code_trx']);
+	header('location:../order/order2.php');
+}
+	
 
  ?>
