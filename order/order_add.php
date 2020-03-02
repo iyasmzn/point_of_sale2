@@ -80,8 +80,8 @@
 												<div class="col-sm-6">
 													<div class="form-group">
 													  <label for="category">Category</label>
-													  <select class="form-control category-select" id="category" name="category_id" onchange="check(this);">
-													  	<option value="all">Select category here...</option>
+													  <select class="form-control category-select" id="category" name="category_id">
+													  	<!-- <option value="all">Select category here...</option> -->
 													  	<?php foreach ($data_catte as $data) { ?>
 													    <option value="<?= $data['id'] ?>"><?= $data['category_name'] ?></option>
 													  	<?php } ?>
@@ -95,7 +95,7 @@
 												<div class="col-sm-6">
 													<div class="form-group">
 													  <label for="item">Item</label>
-													  <select class="form-control itttem-all itemNone-all" id="item" name="item">
+														  <select class="form-control itttem-all itemNone-all" id="item" name="item_id">
 														  	<?php 
 														  	foreach ($data_items as $data) { ?>
 														    <option value="<?= $data['id'] ?>"><?= $data['item'] ?></option>
