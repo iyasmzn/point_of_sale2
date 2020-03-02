@@ -169,6 +169,10 @@
 	                $('.itemNone-1').css('display', 'none');
 	                $('.itemNone-3').css('display', 'none');
                 }
+                if (cate == 3) {
+	                $('.itemNone-all').css('display', 'none');
+	                $('.itemNone-1').css('display', 'none');
+                }
                 if (cate == "all") {
 	                $('.itemNone-all').css('display', 'block');
 	                $('.itemNone-1').css('display', 'none');
