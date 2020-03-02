@@ -7,6 +7,7 @@
   $tables = $db->data_show('tables');
   $data_items = $db->data_id_item('item');
   $data_catte = $db->data_show('category');
+  $ang = 1;
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,6 +18,14 @@
 		<title>Order Add | Point Os Sale</title>
 		<!-- plugins:css -->
 		<?php include '../tmp/link.php'; ?>
+		<style type="text/css">
+			[class*='itttem'] {
+				display: none;
+			}
+			.itttem-all {
+				display: block;
+			}
+		</style>
 	</head>
 	<body>
 		<div class="container-scroller">
@@ -70,21 +79,41 @@
 												<div class="col-sm-6">
 													<div class="form-group">
 													  <label for="category">Category</label>
-													  <select class="form-control" id="category" name="category">
+													  <select class="form-control category-select" id="category" name="category" onchange="check(this);">
+													  	<option value="all">Select category here...</option>
 													  	<?php foreach ($data_catte as $data) { ?>
 													    <option value="<?= $data['id'] ?>"><?= $data['category_name'] ?></option>
 													  	<?php } ?>
 													  </select>
 													</div>
 												</div>
+												<?php  
+												  echo "<script>document.write(sss);</script>";
+												?>
+											<input type="text" class="vvval" name="" value="all" id="checking">
 												<div class="col-sm-6">
 													<div class="form-group">
 													  <label for="item">Item</label>
-													  <select class="form-control" id="item" name="item">
-													  	<?php foreach ($data_items as $data) { ?>
-													    <option value="<?= $data['id'] ?>"><?= $data['item'] ?></option>
-													  	<?php } ?>
-													  </select>
+													  <select class="form-control itttem-all itemNone-all" id="item" name="item">
+														  	<?php 
+														  	foreach ($data_items as $data) { ?>
+														    <option value="<?= $data['id'] ?>"><?= $data['item'] ?></option>
+														  	<?php } ?>
+														  </select>	
+													  <?php 
+													  	foreach ($data_catte as $caate) { 
+															  $data_item_id = $db->data_itemss($caate['id']);
+													  		?>
+													  		<input type="hidden" class="ittttem" value="<?= $caate['id'] ?>">
+														  <select class="form-control itttem-<?= $caate['id'] ?> itemNone-<?= $caate['id'] ?>" id="item" name="item">
+														  	<?php 
+														  	foreach ($data_item_id as $data) { ?>
+														    <option value="<?= $data['id'] ?>"><?= $data['item'] ?></option>
+														  	<?php } ?>
+														  </select>	
+													  	<?php
+													  	}
+													   ?>
 													</div>
 												</div>
 											</div>
@@ -123,6 +152,31 @@
 		<!-- container-scroller -->
 		<!-- plugins:js -->
 	 <?php include '../tmp/script.php'; ?>
+	 <script type="text/javascript">
+        $(document).ready(function() {
+            $('.category-select').change(function() {
+                var cate = $('.category-select').val();
+                $('.vvval').val(cate);
+                $('.itttem-'+cate).css('display', 'block');
+                if (cate == 1) {
+	                $('.itemNone-all').css('display', 'none');
+	                $('.itemNone-2').css('display', 'none');
+	                $('.itemNone-3').css('display', 'none');
+                }
+                if (cate == 2) {
+	                $('.itemNone-all').css('display', 'none');
+	                $('.itemNone-1').css('display', 'none');
+	                $('.itemNone-3').css('display', 'none');
+                }
+                if (cate == "all") {
+	                $('.itemNone-all').css('display', 'block');
+	                $('.itemNone-1').css('display', 'none');
+	                $('.itemNone-2').css('display', 'none');
+	                $('.itemNone-3').css('display', 'none');
+                }
+            });
+        });
+    </script>
 		<!-- End custom js for this page -->
 	</body>
 	<?php 

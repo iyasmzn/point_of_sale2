@@ -120,23 +120,23 @@ elseif ($action == "add_to_cart") {
 			$db->add_to_cart($_POST['user_id'], $_POST['item_id'], $_POST['qty'], $total2);
 			$db->order_detail_from_cart_add($_POST['category_id'], $_POST['item_id'], $_POST['qty'], $total2, $_POST['user_id'],$_POST['status']);
 			$db->update_item_qty($stock_new, $_POST['item_id']);
-			// header('location:../view/ordering.php');	
+			header('location:../view/ordering.php');	
 		}
 		else {	
 			$db->update_item_cart($qtyy, $_POST['item_id'],$_POST['user_id'], $total1);
 			$db->order_detail_from_cart_update($_POST['item_id'], $qtyy, $total1, $_POST['user_id'], $_POST['status']);
 			$db->update_item_qty($stock_new, $_POST['item_id']);
-			// header('location:../view/ordering.php');
+			header('location:../view/ordering.php');
 		}
-	echo "qty++ = ".$qtyy;
-	echo "<br>";
-	echo "item = ".$data_item['item'];
-	echo "<br>";
-	echo "stock item = ".$data_item['stock'];
-	echo "<br>";
-	echo "stock item update = ".$stock_new;
-	echo "<br>";
-	echo "category_id = ".$_POST['category_id'];
+	// echo "qty++ = ".$qtyy;
+	// echo "<br>";
+	// echo "item = ".$data_item['item'];
+	// echo "<br>";
+	// echo "stock item = ".$data_item['stock'];
+	// echo "<br>";
+	// echo "stock item update = ".$stock_new;
+	// echo "<br>";
+	// echo "category_id = ".$_POST['category_id'];
 }
 
 // ORDER2
@@ -145,7 +145,7 @@ elseif ($action == "order_user_add") {
 	$db->order_detail_from_cart_update2($_POST['code_trx'], $_POST['user_id']);
 	$db->order_cart_delete($_POST['user_id']);
 	var_dump($_POST['code_trx']);
-	// header('location:../order/order2.php');
+	header('location:../order/order2.php');
 }
 elseif ($action == "order_delete") {
 	$db->data_delete('order_user',$_GET['id']);

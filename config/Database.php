@@ -167,6 +167,14 @@
 		{
 			mysqli_query($this->connect, "DELETE FROM order_detail WHERE code_trx='$code'");
 		}
+		public function data_itemss($cate) 
+		{
+			$res = mysqli_query($this->connect, "SELECT * FROM item WHERE category_id = '$cate'");
+			while ($row = mysqli_fetch_array($res)) {
+				$data[] = $row;
+			}
+			return $data;
+		}
 
 // Random Code
 		public function code_trx($num)
