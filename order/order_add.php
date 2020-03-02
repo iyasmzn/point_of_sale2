@@ -56,9 +56,10 @@
 								<div class="card">
 									<div class="card-body">
 										<h4 class="card-title">Add Order</h4>
-										<form class="form-sample" method="POST" action="../config/proccess.php?action=order_add">
+										<p class="card-description"> </p>
+										<form class="form-sample" method="post" action="../config/proccess.php?action=add_to_cart">
 	              			<input type="hidden" name="user_id" value="<?= $_SESSION['id'] ?>">
-											<p class="card-description"> </p>
+                			<input type="hidden" name="status" value="0">
 											<!-- <div class="form-group row my-0">
 												<div class="col-sm-12">
 													<div class="form-group">
@@ -79,7 +80,7 @@
 												<div class="col-sm-6">
 													<div class="form-group">
 													  <label for="category">Category</label>
-													  <select class="form-control category-select" id="category" name="category" onchange="check(this);">
+													  <select class="form-control category-select" id="category" name="category_id" onchange="check(this);">
 													  	<option value="all">Select category here...</option>
 													  	<?php foreach ($data_catte as $data) { ?>
 													    <option value="<?= $data['id'] ?>"><?= $data['category_name'] ?></option>
@@ -90,7 +91,7 @@
 												<?php  
 												  echo "<script>document.write(sss);</script>";
 												?>
-											<input type="text" class="vvval" name="" value="all" id="checking">
+											<input type="hidden" class="vvval" name="" value="all" id="checking">
 												<div class="col-sm-6">
 													<div class="form-group">
 													  <label for="item">Item</label>
@@ -105,12 +106,12 @@
 															  $data_item_id = $db->data_itemss($caate['id']);
 													  		?>
 													  		<input type="hidden" class="ittttem" value="<?= $caate['id'] ?>">
-														  <select class="form-control itttem-<?= $caate['id'] ?> itemNone-<?= $caate['id'] ?>" id="item" name="item">
-														  	<?php 
-														  	foreach ($data_item_id as $data) { ?>
-														    <option value="<?= $data['id'] ?>"><?= $data['item'] ?></option>
-														  	<?php } ?>
-														  </select>	
+															  <select class="form-control itttem-<?= $caate['id'] ?> itemNone-<?= $caate['id'] ?>" id="item" name="item_id">
+															  	<?php 
+															  	foreach ($data_item_id as $data) { ?>
+															    <option value="<?= $data['id'] ?>"><?= $data['item'] ?></option>
+															  	<?php } ?>
+															  </select>	
 													  	<?php
 													  	}
 													   ?>
